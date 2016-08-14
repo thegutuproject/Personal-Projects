@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="cfeceafa-2074-4775-91d1-483c8ad13e64" name="AMPPS - Amazon API MySQL" url="http://localhost/Amazon API MySQL">
+        <fileTransfer port="0" mountedRoot="/Applications/AMPPS/www/Amazon API MySQL" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>
