@@ -5,7 +5,7 @@
 	$connection = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD);
 
 	if (!$connection) {
-		die('Could not connect: ' . mysqli_error($con));
+		die('Could not connect: ' . mysqli_error($connection));
 	}
 
 	mysqli_select_db($connection,DB_DATABASE);
@@ -14,8 +14,8 @@
 	{
 		$operation = trim($_GET['operation']);
 	}
-//	else
-//	{
+	else
+	{
 		$sql="SELECT * FROM items";
 		$result = mysqli_query($connection, $sql);
 
@@ -54,7 +54,7 @@
 
 		echo "</body>";
 		echo "</html>";
-//	}
+	}
 
 	if ($operation == "add")
 	{
@@ -65,7 +65,7 @@
 
 		$sql = "INSERT INTO items (ASIN, Title, MPN, Price) VALUES ('" . $asin . "', '" . $title . "', '" . $mpn . "', " . $price . ");";
 
-		$result = 	mysqli_query($connection, $sql);
+		$result = mysqli_query($connection, $sql);
 
 		mysqli_close($connection);
 	}
@@ -120,8 +120,8 @@
 			$price =  $parsed_xml -> Items[0] -> Item[0] -> ItemAttributes[0] -> ListPrice[0] -> FormattedPrice;
 
 			$result =  $asin . ';' . $title . ';' . $mpn . ';' . $price;
-		}
 
-		echo trim($result);
+			echo trim($result);
+		}
 	}
 ?>

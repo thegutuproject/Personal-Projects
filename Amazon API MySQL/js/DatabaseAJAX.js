@@ -29,10 +29,12 @@ $('.searchAmazon').click(function(){
 			searchASIN: $('#searchASIN').val()
 		},
 		success:function(data){
+			var response = data.split(";");
 			$('#asin').val(response[0].trim());
 			$('#title').val(response[1].trim());
 			$('#mpn').val(response[2].trim());
 			$('#price').val(response[3].trim());
+			$('.databaseView').load('connection.php');
 		}
 	});
 });
