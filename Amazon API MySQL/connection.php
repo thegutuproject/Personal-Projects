@@ -61,15 +61,19 @@
 		$asin = trim($_GET['asin']);
 		$title = trim($_GET['title']);
 		$mpn = trim($_GET['mpn']);
-		$price = trim($_GET['price']);
+		$price = substr(trim($_GET['price']), 1);
 
-		$sql = "INSERT INTO items (ASIN, Title, MPN, Price) VALUES ('" . $asin . "', '" . $title . "', '" . $mpn . "', " . $price . ");";
+		$sql = "INSERT INTO items (ASIN, Title, MPN, Price) VALUES ('" . $asin . "', '" . $title . "', '" . $mpn . "', " . $price . ")";
 
 		$result = mysqli_query($connection, $sql);
 
 		mysqli_close($connection);
-	}
 
+		$asin = '';
+		$title = '';
+		$mpn = '';
+		$price = '';
+	}
 
 	if ($operation == "search")
 	{
