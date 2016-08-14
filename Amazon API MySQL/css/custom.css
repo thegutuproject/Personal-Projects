@@ -1,0 +1,10 @@
+label {
+    clear: both;
+    font-weight: bold;
+    padding: 5px;
+}
+
+p label {
+    display: inline-block;
+    width: 50px;
+}

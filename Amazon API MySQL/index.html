@@ -6,59 +6,55 @@
 
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="./css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="./css/custom.css">
+
 
 </head>
 <body>
 
 	<div class="container-fluid">
-
-		<div class="col-lg-6 databaseView">
-			<div>
-
-			</div>
-		</div>
-
-		<div class="col-lg-6">
-
-			<div id="searchAmazon">
-				<fieldset>
-					ASIN:
-					<input id="searchASIN" type="text" name="searchASIN">
-					<input class="btn btn-primary searchAmazon" type="button" value="Search Amazon">
-				</fieldset>
-			</div>
-
-			<div id="amazonResults">
-				<fieldset>
-					ASIN:
-					<input id="asin" type="text" name="asin"><br>
-					Title:
-					<input id="title" type="text" name="title"><br>
-					MPN:
-					<input id="mpn" type="text" name="mpn"><br>
-					Price:
-					<input id="price" type="text" name="price"><br>
-					<input class="btn btn-primary addToDatabase" type="button" value="Add To Database">
-				</fieldset>
-			</div>
-
-			<!--<div id="addToDatabase">-->
-				<!--<fieldset>-->
-					<!--ASIN: <br>-->
-					<!--<input id="asin" type="text" name="asin"><br>-->
-					<!--Title: <br>-->
-					<!--<input id="title" type="text" name="title"><br>-->
-					<!--MPN: <br>-->
-					<!--<input id="mpn" type="text" name="mpn"><br>-->
-					<!--Price: <br>-->
-					<!--<input id="price" type="text" name="price"><br>-->
-					<!--Testing:-->
-					<!--<input class="btn btn-primary addToDatabase" type="button" value="Add To Database">-->
-				<!--</fieldset>-->
-			<!--</div>-->
+		<div class="navbar">
 
 		</div>
+		<div class="container-fluid">
 
+			<div class="col-lg-6 databaseView">
+				<div>
+
+				</div>
+			</div>
+
+			<div class="col-lg-6">
+
+				<div id="searchAmazon">
+					<fieldset>
+						<p>
+							<label for="searchASIN">ASIN:</label>
+							<input id="searchASIN" type="text" name="searchASIN">
+						</p>
+						<input class="btn btn-primary searchAmazon" type="button" value="Search Amazon">
+					</fieldset>
+				</div>
+
+				<div id="amazonResults">
+					<fieldset>
+						<p>
+							<label for="asin">ASIN: </label>
+							<input id="asin" type="text" name="asin"><br>
+							<label for="title">Title: </label>
+							<input id="title" type="text" name="title"><br>
+							<label for="mpn">MPN: </label>
+							<input id="mpn" type="text" name="mpn"><br>
+							<label for="price">Price: </label>
+							<input id="price" type="text" name="price"><br>
+						</p>
+						<input class="btn btn-primary addToDatabase" type="button" value="Add To Database">
+					</fieldset>
+				</div>
+
+			</div>
+
+		</div>
 	</div>
 
 	<script type="text/javascript" src="./js/jquery-3.1.0.js"></script>
