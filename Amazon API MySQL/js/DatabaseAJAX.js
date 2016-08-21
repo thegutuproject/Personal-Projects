@@ -29,11 +29,13 @@ $('.searchAmazon').click(function(){
 			searchASIN: $('#searchASIN').val()
 		},
 		success:function(data){
-			var response = data.split(";");
-			$('#asin').val(response[0].trim());
-			$('#title').val(response[1].trim());
-			$('#mpn').val(response[2].trim());
-			$('#price').val(response[3].trim());
+			// JSON parsing from PHP -- Unsure why I need to use .asin[] .title[] etc,
+			// wanted to do amazonResponse.asin = asin, amazonResponse.title = title, etc...
+			var amazonResponse = data;
+			$('#asin').val(amazonResponse.asin[0]);
+			$('#title').val(amazonResponse.title[0]);
+			$('#mpn').val(amazonResponse.mpn[0]);
+			$('#price').val(amazonResponse.price[0]);
 			$('.databaseView').load('connection.php');
 		}
 	});

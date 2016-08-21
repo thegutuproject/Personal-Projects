@@ -123,9 +123,10 @@
 			$mpn =  $parsed_xml -> Items[0] -> Item[0] -> ItemAttributes[0] -> MPN;
 			$price =  $parsed_xml -> Items[0] -> Item[0] -> ItemAttributes[0] -> ListPrice[0] -> FormattedPrice;
 
-			$result =  $asin . ';' . $title . ';' . $mpn . ';' . $price;
+			header('Content-Type: application/json');
+			$result = json_encode(array('asin' => $asin, 'title' => $title, 'mpn' => $mpn, 'price' => $price));
 
-			echo trim($result);
+			echo ($result);
 		}
 	}
 ?>
