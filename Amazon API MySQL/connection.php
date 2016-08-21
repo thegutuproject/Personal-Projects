@@ -47,7 +47,7 @@
 			echo "<td>" . $row['ASIN'] . "</td>";
 			echo "<td>" . $row['Title'] . "</td>";
 			echo "<td>" . $row['MPN'] . "</td>";
-			echo "<td>" . $row['Price'] . "</td>";
+			echo "<td>" . "$" . $row['Price'] . "</td>";
 			echo "</tr>";
 		}
 		echo "</table>";

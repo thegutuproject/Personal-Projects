@@ -4,7 +4,6 @@
     <list default="true" id="7f7b019a-721a-4569-8765-063af9583ff5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/connection.php" afterPath="$PROJECT_DIR$/connection.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/DatabaseAJAX.js" afterPath="$PROJECT_DIR$/js/DatabaseAJAX.js" />
     </list>
     <ignored path="Amazon API MySQL.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -91,12 +90,12 @@
       <file leaf-file-name="connection.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/connection.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1129">
-              <caret line="127" column="12" selection-start-line="127" selection-start-column="12" selection-end-line="127" selection-end-column="12" />
+            <state relative-caret-position="330">
+              <caret line="49" column="32" selection-start-line="49" selection-start-column="32" selection-end-line="49" selection-end-column="32" />
               <folding>
-                <marker date="1471814835000" expanded="true" signature="346:365" ph="SELECT * FRO... items" />
-                <marker date="1471814835000" expanded="true" signature="1382:1485" ph="INSERT INTO items... " />
-                <marker date="1471814835000" expanded="true" signature="1382:1500" ph="INSERT INTO items... " />
+                <marker date="1471815636000" expanded="true" signature="346:365" ph="SELECT * FRO... items" />
+                <marker date="1471815636000" expanded="true" signature="1388:1491" ph="INSERT INTO items... " />
+                <marker date="1471815636000" expanded="true" signature="1388:1506" ph="INSERT INTO items... " />
               </folding>
             </state>
           </provider>
@@ -352,7 +351,7 @@
       <workItem from="1471144911250" duration="1402000" />
       <workItem from="1471146950711" duration="6913000" />
       <workItem from="1471205755734" duration="790000" />
-      <workItem from="1471813706377" duration="1113000" />
+      <workItem from="1471813706377" duration="1620000" />
     </task>
     <task id="LOCAL-00001" summary="PHPSTORM VCS INTEGRATION TEST">
       <created>1471143262088</created>
@@ -403,14 +402,21 @@
       <option name="project" value="LOCAL" />
       <updated>1471206400957</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="implemented JSON passing from PHP to JS">
+      <created>1471814868063</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1471814868063</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11836000" />
+    <option name="totallyTimeSpent" value="12343000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="1097" extended-state="6" />
+    <frame x="0" y="23" width="1920" height="1097" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2603834" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -453,7 +459,8 @@
     <MESSAGE value="EVERYTHING WORKS! Todo: Figure out why $ is not allowed in varchar... MySQL" />
     <MESSAGE value="Fixed CSS Styling" />
     <MESSAGE value="removed amazon test connection php files" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed amazon test connection php files" />
+    <MESSAGE value="implemented JSON passing from PHP to JS" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented JSON passing from PHP to JS" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -489,9 +496,9 @@
         <state relative-caret-position="945">
           <caret line="63" column="44" selection-start-line="63" selection-start-column="44" selection-end-line="63" selection-end-column="44" />
           <folding>
-            <marker date="1471814835000" expanded="true" signature="346:365" ph="SELECT * FRO... items" />
-            <marker date="1471814835000" expanded="true" signature="1382:1485" ph="INSERT INTO items... " />
-            <marker date="1471814835000" expanded="true" signature="1382:1500" ph="INSERT INTO items... " />
+            <marker date="1471815636000" expanded="true" signature="346:365" ph="SELECT * FRO... items" />
+            <marker date="1471815636000" expanded="true" signature="1388:1491" ph="INSERT INTO items... " />
+            <marker date="1471815636000" expanded="true" signature="1388:1506" ph="INSERT INTO items... " />
           </folding>
         </state>
       </provider>
@@ -546,9 +553,9 @@
         <state relative-caret-position="945">
           <caret line="63" column="44" selection-start-line="63" selection-start-column="44" selection-end-line="63" selection-end-column="44" />
           <folding>
-            <marker date="1471814835000" expanded="true" signature="346:365" ph="SELECT * FRO... items" />
-            <marker date="1471814835000" expanded="true" signature="1382:1485" ph="INSERT INTO items... " />
-            <marker date="1471814835000" expanded="true" signature="1382:1500" ph="INSERT INTO items... " />
+            <marker date="1471815636000" expanded="true" signature="346:365" ph="SELECT * FRO... items" />
+            <marker date="1471815636000" expanded="true" signature="1388:1491" ph="INSERT INTO items... " />
+            <marker date="1471815636000" expanded="true" signature="1388:1506" ph="INSERT INTO items... " />
           </folding>
         </state>
       </provider>
@@ -605,9 +612,9 @@
         <state relative-caret-position="15">
           <caret line="1" column="21" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding>
-            <marker date="1471814835000" expanded="true" signature="346:365" ph="SELECT * FRO... items" />
-            <marker date="1471814835000" expanded="true" signature="1382:1485" ph="INSERT INTO items... " />
-            <marker date="1471814835000" expanded="true" signature="1382:1500" ph="INSERT INTO items... " />
+            <marker date="1471815636000" expanded="true" signature="346:365" ph="SELECT * FRO... items" />
+            <marker date="1471815636000" expanded="true" signature="1388:1491" ph="INSERT INTO items... " />
+            <marker date="1471815636000" expanded="true" signature="1388:1506" ph="INSERT INTO items... " />
           </folding>
         </state>
       </provider>
@@ -634,9 +641,9 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1471814835000" expanded="true" signature="346:365" ph="SELECT * FRO... items" />
-            <marker date="1471814835000" expanded="true" signature="1382:1485" ph="INSERT INTO items... " />
-            <marker date="1471814835000" expanded="true" signature="1382:1500" ph="INSERT INTO items... " />
+            <marker date="1471815636000" expanded="true" signature="346:365" ph="SELECT * FRO... items" />
+            <marker date="1471815636000" expanded="true" signature="1388:1491" ph="INSERT INTO items... " />
+            <marker date="1471815636000" expanded="true" signature="1388:1506" ph="INSERT INTO items... " />
           </folding>
         </state>
       </provider>
@@ -674,6 +681,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/credentials.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="dbDummy://dbtable:/994ab87/8e53485d-8bac-435e-beac-1ff5f1c7ce87/amazon.items">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -687,14 +702,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/credentials.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/DatabaseAJAX.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -705,12 +712,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/connection.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1129">
-          <caret line="127" column="12" selection-start-line="127" selection-start-column="12" selection-end-line="127" selection-end-column="12" />
+        <state relative-caret-position="330">
+          <caret line="49" column="32" selection-start-line="49" selection-start-column="32" selection-end-line="49" selection-end-column="32" />
           <folding>
-            <marker date="1471814835000" expanded="true" signature="346:365" ph="SELECT * FRO... items" />
-            <marker date="1471814835000" expanded="true" signature="1382:1485" ph="INSERT INTO items... " />
-            <marker date="1471814835000" expanded="true" signature="1382:1500" ph="INSERT INTO items... " />
+            <marker date="1471815636000" expanded="true" signature="346:365" ph="SELECT * FRO... items" />
+            <marker date="1471815636000" expanded="true" signature="1388:1491" ph="INSERT INTO items... " />
+            <marker date="1471815636000" expanded="true" signature="1388:1506" ph="INSERT INTO items... " />
           </folding>
         </state>
       </provider>
