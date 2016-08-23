@@ -65,6 +65,7 @@ function search() {
 
 			console.log(data);
 
+			// jQuery loop
 			$.each(data.items, function(i, item) {
 				// Build list of videos from data return
 				var videoOutput = getOutput(item);
@@ -72,6 +73,14 @@ function search() {
 				// Display results into our results view
 				$('#searchResults').append(videoOutput);
 			});
+
+			// Pure Javascript for loop
+			// for (i = 0; i < data.items.length - 1; i++)
+			// 	{
+			// 		var videoOutput = getOutput(data.items[i]);
+			//
+			// 		$('#searchResults').append(videoOutput);
+			// 	}
 
 			var navButtons = getButtons(previousPageToken, nextPageToken);
 
