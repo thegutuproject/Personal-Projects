@@ -2,6 +2,16 @@
  * Created by alexandrugutu on 8/22/16.
  */
 
+$(document).ready(function() {
+	$('.fancybox-media').fancybox({
+		openEffect  : 'none',
+		closeEffect : 'none',
+		helpers : {
+			media : true
+		}
+	});
+});
+
 $(function() {
 	var searchField = $('#query');
 	var icon = $('#search-btn');
@@ -161,7 +171,7 @@ function getOutput(item) {
 				'<img src="' + videoThumbnail + '">' +
 			'</div>' +
 			'<div class="list-right">' +
-				'<h3>' + videoTitle + '</h3>' +
+				'<h3><a class="fancybox-media" href="https://www.youtube.com/watch?v=' + videoId + '">' + videoTitle + '</a></h3>' +
 				'<small>By <span class="channelTitle">' + channelTitle + '</span> on ' + videoDate + '</small>' +
 				'<p>' + videoDesc + '</p>' +
 			'</div>' +
