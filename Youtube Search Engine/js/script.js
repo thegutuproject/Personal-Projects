@@ -28,4 +28,33 @@ $(function() {
 				}, 400, function(){});
 			}
 	});
+
+	$('#search-form').submit(function(e) {
+		e.preventDefault();
+	});
 });
+
+function search() {
+	// Clear search bar
+	$('#results').html('');
+	$('#buttons').html('');
+
+	// Get Form Input
+	var query = $('#query').val();
+
+	// GET Request on YouTube API
+	$.get(
+		'https://www.googleapis.com/youtube/v3/search', {
+			part: 'snippet, id',
+			q: query,
+			type: 'video',
+			key: 'AIzaSyBMpNHK_NMeU29WHxo_9r3E6IQB992vgN8'},
+		function(data) {
+			var nextPageToken = data.nextPageToken;
+			var previousPageToken = data.prevPageToken;
+
+			console.log(data);
+
+		}
+	)
+}
