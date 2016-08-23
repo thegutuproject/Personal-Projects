@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="AMPPS" uploadOnCheckin="e9648074-13b7-4ac4-a7ae-8b47e72dadab">
+    <serverData>
+      <paths name="AMPPS">
+        <serverdata>
+          <mappings>
+            <mapping deploy="Youtube Search Engine" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myUploadOnCheckinName" value="AMPPS" />
+  </component>
+</project>

@@ -4,7 +4,7 @@
 
 $(document).ready(function() {
 	$('.fancybox-media').fancybox({
-		openEffect  : 'none',
+		openEffect  : 'fade',
 		closeEffect : 'none',
 		helpers : {
 			media : true
@@ -76,6 +76,14 @@ function search() {
 			var navButtons = getButtons(previousPageToken, nextPageToken);
 
 			$('#navigationButtons').append(navButtons);
+
+			$('.fancybox-media').fancybox({
+				openEffect  : 'fade',
+				closeEffect : 'none',
+				helpers : {
+					media : true
+				}
+			});
 		}
 	)
 }
@@ -114,6 +122,15 @@ function nextPage() {
 			var navButtons = getButtons(previousPageToken, nextPageToken);
 
 			$('#navigationButtons').append(navButtons);
+
+			$('.fancybox-media').fancybox({
+				openEffect  : 'fade',
+				closeEffect : 'none',
+				helpers : {
+					media : true
+				}
+			});
+
 		}
 	)
 }
@@ -152,6 +169,14 @@ function previousPage() {
 			var navButtons = getButtons(previousPageToken, nextPageToken);
 
 			$('#navigationButtons').append(navButtons);
+
+			$('.fancybox-media').fancybox({
+				openEffect  : 'fade',
+				closeEffect : 'none',
+				helpers : {
+					media : true
+				}
+			});
 		}
 	)
 }
@@ -171,7 +196,7 @@ function getOutput(item) {
 				'<img src="' + videoThumbnail + '">' +
 			'</div>' +
 			'<div class="list-right">' +
-				'<h3><a class="fancybox-media" href="https://www.youtube.com/watch?v=' + videoId + '">' + videoTitle + '</a></h3>' +
+				'<h3><a class="fancybox-media fancybox fancybox.iframe" href="https://www.youtube.com/embed/' + videoId + '">' + videoTitle + '</a></h3>' +
 				'<small>By <span class="channelTitle">' + channelTitle + '</span> on ' + videoDate + '</small>' +
 				'<p>' + videoDesc + '</p>' +
 			'</div>' +
