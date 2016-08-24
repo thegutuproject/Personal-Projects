@@ -67,7 +67,7 @@ function search() {
 
 			// jQuery loop
 			$.each(data.items, function(i, item) {
-				// Build list of videos from data return
+			// 	Build list of videos from data return
 				var videoOutput = getOutput(item);
 
 				// Display results into our results view
