@@ -1,0 +1,17 @@
+#left-side {
+	width: 280px;
+	float: left;
+}
+
+#center-block {
+
+}
+
+#right-side {
+	width: 280px;
+	float: right;
+}
+
+#row {
+	clear: both;
+}
