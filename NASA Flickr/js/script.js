@@ -22,10 +22,8 @@ startButton.addEventListener('click', function() {
 	//
 	// console.log(tag_mode);
 
-	// getPhotos();
+	getPhotos();
 });
-
-
 
 function getPhotos() {
 
@@ -54,4 +52,43 @@ function getPhotos() {
 	};
 
 	photoRequest.send(null);
+}
+
+function processInput(photos) {
+
+	// for (var i = 0; i < photos.photo.length; i++)
+	for (var index in photos.photo)
+		{
+			photos.photo[index].size = getSize(photos, index);
+		}
+}
+
+function getSize(photos, index) {
+
+	var photoSizeRequest = new XMLHttpRequest();
+
+	var data = {
+		method: 'flickr.photos.getSizes',
+		api_key: 'dadeb42528363ca20ca630ea9e800129',
+		photo_id: photos.photo[index].id,
+		format: 'json',
+		nojsoncallback: 1
+	};
+
+	var url = buildURL('https://api.flickr.com/services/rest/', data);
+
+	photoSizeRequest.open('GET', url, true);
+
+	photoSizeRequest.onreadystatechange = function() {
+		if (photoSizeRequest.readyState === 4 && photoSizeRequest.status === 200) {
+			photos.photo[index].size = JSON.parse(photoSizeRequest.responseText).sizes.size;
+			createHTML(photos.photo[index]);
+		}
+		else if (photoSizeRequest.readyState === 4 && photoSizeRequest.status === 400) {
+			console.log("Improper Request");
+		}
+
+	};
+
+	photoSizeRequest.send(null);
 }
