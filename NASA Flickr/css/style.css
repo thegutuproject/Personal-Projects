@@ -7,16 +7,16 @@ body {
 
 /* STRUCTURE */
 
-#pagewrap {
-	padding: 5px;
-	width: 90%;;
-	margin: 20px auto;
-}
-
 header {
 	height: 100px;
 	padding: 0 15px;
 	text-align: center;
+}
+
+#pagewrap {
+	padding: 5px;
+	width: 90%;;
+	margin: 20px auto;
 }
 
 #left-side {
@@ -26,7 +26,7 @@ header {
 	height: 100%
 }
 
-#filter-settings {
+#left-side #filter-settings {
 	width: 95%;
 	height: 100%;
 	margin-left: auto;
@@ -42,11 +42,15 @@ header {
 }
 
 #middleSection {
-	/*width: 294px; !* Account for margins + border values *!*/
 	width: 84%;
 	padding: 5px 15px;
 	margin-top: 5px;
 	margin-left: auto;
+}
+
+#search-results {
+	list-style-type: none;
+	margin-left: -50px;
 }
 
 #searchResults li {
@@ -65,13 +69,14 @@ header {
 .list-left {
 	float: left;
 	width: 20%;
-	padding: 4px;
+	padding: 5px;
 }
 
 .list-left img {
 	width: 100%;
 	padding: 3px;
 	border: solid #ccc 1px;
+	margin-left: auto;
 }
 
 .list-right {
