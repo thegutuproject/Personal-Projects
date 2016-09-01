@@ -22,7 +22,7 @@ header {
 #left-side {
 	width: 15%;
 	float: left;
-	padding: 5px 15px;
+	padding: 5px 5px;
 	height: 100%
 }
 
@@ -31,6 +31,14 @@ header {
 	height: 100%;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+#pictureTags {
+	width: 100%;
+}
+
+#start-button {
+	margin: 5px;
 }
 
 #middleSection {
@@ -75,6 +83,33 @@ header {
 	color: #dd2826
 }
 
+.photo-sizes ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.photo-sizes li {
+	float: left;
+}
+
+.photo-sizes li a {
+	display: block;
+	color: black;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+.photo-sizes li a:hover {
+	background: black;
+	color: white;
+
+}
+
+/* Misc */
+
 #left-side
 {
 	background: #f8f8f8;
@@ -93,6 +128,8 @@ footer {
 	padding: 15px;
 }
 
+/* Navigation Buttons */
+
 #navigationButtons {
 	margin: 0 auto;
 }
@@ -106,4 +143,68 @@ footer {
 .navigation-buttons li {
 	display: inline;
 	padding: 5px;
+}
+
+
+/************************************************************************************
+MEDIA QUERIES
+*************************************************************************************/
+/* for 980px or less */
+@media screen and (max-width: 980px) {
+
+	#pagewrap {
+		width: 94%;
+	}
+
+	#left-side {
+		width: 30%;
+		padding: 1% 4%;
+	}
+
+	#middleSection {
+		width: 69%;
+		padding: 1% 4%;
+		margin: 0px 0px 5px 5px;
+		float: right;
+	}
+
+	header, footer {
+		padding: 1% 4%;
+	}
+}
+
+/* for 700px or less */
+@media screen and (max-width: 600px) {
+
+	#left-side {
+		width: auto;
+		float: none;
+	}
+
+	#middleSection {
+		width: auto;
+		float: none;
+		margin-left: 0px;
+	}
+
+	#searchResults .list-left {
+		float: left;
+	}
+
+	#searchResults .list-right {
+		float: left;
+	}
+
+}
+
+/* for 480px or less */
+@media screen and (max-width: 480px) {
+
+	header {
+		height: auto;
+	}
+
+	h1 {
+		font-size: 2em;
+	}
 }

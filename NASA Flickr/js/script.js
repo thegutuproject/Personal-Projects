@@ -3,27 +3,32 @@
  */
 
 var startButton = document.getElementById('start-button');
+
+// Failed attempt at implementing filters... :(
+
 startButton.addEventListener('click', function() {
-
-	// var tagParameter = document.getElementById('pictureTags').value;
-	// var tag_mode;
-	//
-	// var radios = document.getElementsByName('tag_mode');
-	// for (var i = 0; i < radios.length; i++) {
-	// 	if (radios[i].checked) {
-	// 		tag_mode = radios[i].value;
-	// 	}
-	// 	else {
-	// 		tag_mode = '';
-	// 	}
-	// }
-	//
-	// var isGeotagged = document.getElementById('isGeotagged').value;
-	//
-	// console.log(tag_mode);
-
+//
+// 	var tagParameter = document.getElementById('pictureTags').value;
+// 	var tag_mode;
+//
+// 	var radios = document.getElementsByName('tag_mode');
+// 	for (var i = 0; i < radios.length; i++) {
+// 		if (radios[i].checked) {
+// 			tag_mode = radios[i].value;
+// 		}
+// 		else {
+// 			tag_mode = '';
+// 		}
+// 	}
+//
+// 	var isGeotagged = document.getElementById('isGeotagged').value;
+//
+// 	var extraParameters = tagParameter
+//
 	getPhotos();
 });
+
+// Function dedicated to encoding URL parameters to pass to Flickr
 
 function buildURL(url, data) {
 	var queryString = "";
@@ -39,6 +44,8 @@ function buildURL(url, data) {
 	return url;
 }
 
+// Initial call to get photos from Flickr
+
 function getPhotos(currentPage) {
 
 	var photoRequest = new XMLHttpRequest();
@@ -52,7 +59,8 @@ function getPhotos(currentPage) {
 				format: 'json',
 				nojsoncallback: 1,
 				per_page: 25,
-				page: currentPage
+				page: currentPage,
+				extras: 'owner_name, date_taken, description'
 			};
 		}
 	else
@@ -63,7 +71,8 @@ function getPhotos(currentPage) {
 				user_id: '24662369@N07',
 				format: 'json',
 				nojsoncallback: 1,
-				per_page: 25
+				per_page: 25,
+				extras: 'owner_name, date_taken, description'
 			};
 		}
 
@@ -87,6 +96,8 @@ function getPhotos(currentPage) {
 	photoRequest.send(null);
 }
 
+// Loops through all images and makes an AJAX call to get sizes.
+
 function processInput(photos) {
 
 	// for (var i = 0; i < photos.photo.length; i++)
@@ -95,6 +106,8 @@ function processInput(photos) {
 			photos.photo[index].size = getSize(photos, index);
 		}
 }
+
+// Appends the size files to the photo JSON object.
 
 function getSize(photos, index) {
 
@@ -126,20 +139,29 @@ function getSize(photos, index) {
 	photoSizeRequest.send(null);
 }
 
+// Function to create HTML objects. This needs major re-organizing, but I haven't figured out an efficient pattern.
+
 function createHTML(photo) {
 	var liItem = document.createElement('li');
 	var leftDiv = document.createElement('div');
 	var rightDiv = document.createElement('div');
 	var clearFixDiv = document.createElement('div');
 	var imageSizesDiv = document.createElement('div');
+	var descriptionDiv = document.createElement('div');
 
 	var previewImage = document.createElement('img');
 	var imageTitle = document.createElement('h3');
 	var imageTitleLink = document.createElement('a');
+	var descriptionSpan = document.createElement('span');
 
 	var credits = document.createElement('small');
 	var photographer = document.createElement('span');
 	var photoSizeList = document.createElement('ul');
+	var dateTaken = document.createElement('span');
+	var strongerDate = document.createElement('strong');
+
+
+	// Mess, needs restructuring
 
 	leftDiv.setAttribute('class', 'list-left');
 	rightDiv.setAttribute('class', 'list-right');
@@ -147,13 +169,17 @@ function createHTML(photo) {
 	clearFixDiv.setAttribute('class', 'clearfix');
 	imageSizesDiv.setAttribute('class', 'photo-sizes');
 	imageTitleLink.setAttribute('href', photo.size[1].source);
+	descriptionDiv.setAttribute('id', 'photo-description');
+	dateTaken.innerHTML = ' On ';
+	strongerDate.innerHTML = photo.datetaken;
 
 	imageTitleLink.innerHTML = photo.title;
-
 	credits.innerHTML = 'By ';
 
 	photographer.setAttribute('class', 'photographer');
-	photographer.innerHTML = 'NASA';
+	photographer.innerHTML = photo.ownername;
+
+	descriptionSpan.innerHTML = photo.description._content;
 
 	photoSizeList.setAttribute('id', 'photoSizes quad');
 
@@ -168,12 +194,16 @@ function createHTML(photo) {
 	}
 
 	// Construction Begins
+	dateTaken.appendChild(strongerDate);
 	credits.appendChild(photographer);
+	credits.appendChild(dateTaken);
 	imageTitle.appendChild(imageTitleLink);
 	imageSizesDiv.appendChild(photoSizeList);
+	descriptionDiv.appendChild(descriptionSpan);
 
 	rightDiv.appendChild(imageTitle);
 	rightDiv.appendChild(credits);
+	rightDiv.appendChild(descriptionDiv);
 	rightDiv.appendChild(imageSizesDiv);
 
 	leftDiv.appendChild(previewImage);
@@ -186,34 +216,37 @@ function createHTML(photo) {
 
 }
 
+// Very similar to above, but this one only handles page buttons on the bottom of the page
+
 function createButtonHTML(currentPage, totalPages) {
 
 	var previousButton = document.createElement('button');
 	var nextButton = document.createElement('button');
-
-	previousButton.setAttribute('data-token', currentPage - 1);
-	previousButton.setAttribute('class', 'btn-primary');
-	previousButton.innerHTML = 'Prev Page';
-
-	nextButton.setAttribute('data-token', currentPage + 1);
-	nextButton.setAttribute('class', 'btn-primary');
-	nextButton.innerHTML = 'Next Page';
-
 	var navigationButtons = document.createElement('ul');
 	var previousButtonLI = document.createElement('li');
 	var nextButtonLI = document.createElement('li');
 
+	previousButton.setAttribute('data-token', currentPage - 1);
+	previousButton.setAttribute('class', 'btn-primary');
+	previousButton.innerHTML = 'Prev Page';
 	previousButtonLI.appendChild(previousButton);
+
+
+	nextButton.setAttribute('data-token', currentPage + 1);
+	nextButton.setAttribute('class', 'btn-primary');
+	nextButton.innerHTML = 'Next Page';
 	nextButtonLI.appendChild(nextButton);
+
 
 	navigationButtons.appendChild(previousButtonLI);
 	navigationButtons.appendChild(nextButtonLI);
-
 	navigationButtons.setAttribute('class','navigation-buttons');
 
 	previousButton.addEventListener('click', function() {
+
 		document.getElementById('search-results').innerHTML = '';
 		document.getElementById('navigationButtons').innerHTML = '';
+
 		if (currentPage - 1 < 1)
 			{
 				getPhotos(currentPage);
@@ -223,9 +256,12 @@ function createButtonHTML(currentPage, totalPages) {
 				getPhotos(currentPage - 1);
 			}
 	});
+
 	nextButton.addEventListener('click', function() {
+
 		document.getElementById('search-results').innerHTML = '';
 		document.getElementById('navigationButtons').innerHTML = '';
+
 		if (currentPage + 1 > totalPages)
 			{
 				getPhotos(currentPage);
@@ -235,12 +271,6 @@ function createButtonHTML(currentPage, totalPages) {
 				getPhotos(currentPage + 1);
 			}
 	});
-
-	// buttonContainer.appendChild(previousButton);
-	// buttonContainer.appendChild(nextButton);
-
-	// document.getElementById('navigationButtons').appendChild(previousButton);
-	// document.getElementById('navigationButtons').appendChild(nextButton);
 
 	document.getElementById('navigationButtons').appendChild(navigationButtons);
 }
