@@ -5,23 +5,25 @@ body {
 	color: #666666;
 }
 
+/* STRUCTURE */
+
+#pagewrap {
+	padding: 5px;
+	width: 90%;;
+	margin: 20px auto;
+}
+
 header {
 	height: 100px;
 	padding: 0 15px;
 	text-align: center;
 }
 
-#pageWrap {
-	padding: 5px;
-	width: 90%;
-	margin: 20px auto;
-}
-
 #left-side {
 	width: 15%;
 	float: left;
 	padding: 5px 15px;
-	height: 100%;
+	height: 100%
 }
 
 #filter-settings {
@@ -32,8 +34,61 @@ header {
 }
 
 #middleSection {
+	/*width: 294px; !* Account for margins + border values *!*/
 	width: 84%;
 	padding: 5px 15px;
 	margin-top: 5px;
 	margin-left: auto;
+}
+
+#searchResults li {
+	padding: 10px 0;
+	border-bottom: 1px #000 dotted;
+	list-style: none;
+	overflow: auto;
+}
+
+/* Search Results Styling */
+
+#results {
+	border: 1px black solid;
+}
+
+.list-left {
+	float: left;
+	width: 20%;
+	padding: 4px;
+}
+
+.list-left img {
+	width: 100%;
+	padding: 3px;
+	border: solid #ccc 1px;
+}
+
+.list-right {
+	float: right;
+	width: 79%;
+}
+
+.photographer {
+	color: #dd2826
+}
+
+#left-side
+{
+	background: #f8f8f8;
+}
+
+header, section, #left-side, #right-side
+{
+	margin-bottom: 5px;
+}
+
+#pagewrap, header, #left-side, #middleSection, footer {
+	border: solid 1px #ccc;
+}
+
+footer {
+	clear: both;
 }

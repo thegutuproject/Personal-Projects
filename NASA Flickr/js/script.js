@@ -25,6 +25,20 @@ startButton.addEventListener('click', function() {
 	getPhotos();
 });
 
+function buildURL(url, data) {
+	var queryString = "";
+	for (var parameter in data) {
+		var value = data[parameter];
+		queryString += encodeURIComponent(parameter) + "=" + encodeURIComponent(value) + "&";
+	}
+	if (queryString.length > 0) {
+		queryString = queryString.substring(0, queryString.length-1); //chop off last "&"
+		url = url + "?" + queryString;
+	}
+
+	return url;
+}
+
 function getPhotos() {
 
 	var photoRequest = new XMLHttpRequest();
@@ -34,7 +48,8 @@ function getPhotos() {
 		api_key: 'dadeb42528363ca20ca630ea9e800129',
 		user_id: '24662369@N07',
 		format: 'json',
-		nojsoncallback: 1
+		nojsoncallback: 1,
+		per_page: 25
 	};
 
 	var url = buildURL('https://api.flickr.com/services/rest/', data);
@@ -83,6 +98,7 @@ function getSize(photos, index) {
 		if (photoSizeRequest.readyState === 4 && photoSizeRequest.status === 200) {
 			photos.photo[index].size = JSON.parse(photoSizeRequest.responseText).sizes.size;
 			createHTML(photos.photo[index]);
+			createPageHTML(photos.page, photos.pages);
 		}
 		else if (photoSizeRequest.readyState === 4 && photoSizeRequest.status === 400) {
 			console.log("Improper Request");
@@ -91,4 +107,77 @@ function getSize(photos, index) {
 	};
 
 	photoSizeRequest.send(null);
+}
+
+function createHTML(photo) {
+	console.log(photo);
+	var farm_id = photo.farm;
+	var server_id = photo.server;
+	var photo_id = photo.id;
+	var photo_secret = photo.secret;
+
+	var defaultPhotoURL = 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '.jpg';
+
+	var liItem = document.createElement('li');
+	var leftDiv = document.createElement('div');
+	var rightDiv = document.createElement('div');
+	var clearFixDiv = document.createElement('div');
+	var imageSizesDiv = document.createElement('div');
+
+	var previewImage = document.createElement('img');
+	var imageTitle = document.createElement('h3');
+	var imageTitleLink = document.createElement('a');
+
+	var credits = document.createElement('small');
+	var photographer = document.createElement('span');
+	var photoSizeList = document.createElement('ul');
+
+	leftDiv.setAttribute('class', 'list-left');
+	rightDiv.setAttribute('class', 'list-right');
+	previewImage.setAttribute('src', photo.size[1].source);
+	clearFixDiv.setAttribute('class', 'clearfix');
+	imageSizesDiv.setAttribute('class', 'photo-sizes');
+	imageTitleLink.setAttribute('href', photo.size[1].source);
+
+	imageTitleLink.innerHTML = photo.title;
+
+	credits.innerHTML = 'By ';
+
+	photographer.setAttribute('class', 'photographer');
+	photographer.innerHTML = 'NASA';
+
+	photoSizeList.setAttribute('id', 'photoSizes quad');
+
+	for (var i = 0; i < photo.size.length; i++) {
+		var imageSizeLinkList = document.createElement('li');
+		var imageSizeLink = document.createElement('a');
+		imageSizeLink.setAttribute('href', photo.size[i].source);
+		imageSizeLink.innerHTML = photo.size[i].label;
+
+		imageSizeLinkList.appendChild(imageSizeLink);
+		photoSizeList.appendChild(imageSizeLinkList);
+	}
+
+	// Construction Begins
+	credits.appendChild(photographer);
+	imageTitle.appendChild(imageTitleLink);
+	imageSizesDiv.appendChild(photoSizeList);
+
+	rightDiv.appendChild(imageTitle);
+	rightDiv.appendChild(credits);
+	rightDiv.appendChild(imageSizesDiv);
+
+	leftDiv.appendChild(previewImage);
+
+	liItem.appendChild(leftDiv);
+	liItem.appendChild(rightDiv);
+
+	document.getElementById('search-results').appendChild(liItem);
+	document.getElementById('search-results').appendChild(clearFixDiv);
+
+}
+
+function createPageHTML(currentPage, totalPages) {
+
+
 }
