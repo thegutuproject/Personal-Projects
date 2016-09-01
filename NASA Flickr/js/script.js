@@ -50,7 +50,7 @@ function getPhotos(currentPage) {
 
 	var photoRequest = new XMLHttpRequest();
 
-	if (typeof currentPage !== 'undefind')
+	if (typeof currentPage !== 'undefined')
 		{
 			var data = {
 				method: 'flickr.people.getPublicPhotos',
