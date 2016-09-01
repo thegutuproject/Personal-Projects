@@ -39,18 +39,33 @@ function buildURL(url, data) {
 	return url;
 }
 
-function getPhotos() {
+function getPhotos(currentPage) {
 
 	var photoRequest = new XMLHttpRequest();
 
-	var data = {
-		method: 'flickr.people.getPublicPhotos',
-		api_key: 'dadeb42528363ca20ca630ea9e800129',
-		user_id: '24662369@N07',
-		format: 'json',
-		nojsoncallback: 1,
-		per_page: 25
-	};
+	if (typeof currentPage !== 'undefind')
+		{
+			var data = {
+				method: 'flickr.people.getPublicPhotos',
+				api_key: 'dadeb42528363ca20ca630ea9e800129',
+				user_id: '24662369@N07',
+				format: 'json',
+				nojsoncallback: 1,
+				per_page: 25,
+				page: currentPage
+			};
+		}
+	else
+		{
+			var data = {
+				method: 'flickr.people.getPublicPhotos',
+				api_key: 'dadeb42528363ca20ca630ea9e800129',
+				user_id: '24662369@N07',
+				format: 'json',
+				nojsoncallback: 1,
+				per_page: 25
+			};
+		}
 
 	var url = buildURL('https://api.flickr.com/services/rest/', data);
 
@@ -58,7 +73,10 @@ function getPhotos() {
 
 	photoRequest.onreadystatechange = function() {
 		if (photoRequest.readyState === 4 && photoRequest.status === 200) {
-			processInput(JSON.parse(photoRequest.response).photos);
+			var photos = JSON.parse(photoRequest.response).photos;
+			console.log(JSON.parse(photoRequest.response).photos);
+			processInput(photos);
+			createButtonHTML(photos.page, photos.pages);
 		}
 		else if (photoRequest.readyState === 4 && photoRequest.status === 400) {
 			console.log("Improper Request");
@@ -98,7 +116,6 @@ function getSize(photos, index) {
 		if (photoSizeRequest.readyState === 4 && photoSizeRequest.status === 200) {
 			photos.photo[index].size = JSON.parse(photoSizeRequest.responseText).sizes.size;
 			createHTML(photos.photo[index]);
-			createPageHTML(photos.page, photos.pages);
 		}
 		else if (photoSizeRequest.readyState === 4 && photoSizeRequest.status === 400) {
 			console.log("Improper Request");
@@ -110,14 +127,6 @@ function getSize(photos, index) {
 }
 
 function createHTML(photo) {
-	console.log(photo);
-	var farm_id = photo.farm;
-	var server_id = photo.server;
-	var photo_id = photo.id;
-	var photo_secret = photo.secret;
-
-	var defaultPhotoURL = 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '.jpg';
-
 	var liItem = document.createElement('li');
 	var leftDiv = document.createElement('div');
 	var rightDiv = document.createElement('div');
@@ -177,7 +186,62 @@ function createHTML(photo) {
 
 }
 
-function createPageHTML(currentPage, totalPages) {
+function createButtonHTML(currentPage, totalPages) {
 
+	var previousButton = document.createElement('button');
+	var nextButton = document.createElement('button');
 
+	previousButton.setAttribute('data-token', currentPage - 1);
+	previousButton.setAttribute('class', 'btn-primary');
+	previousButton.innerHTML = 'Prev Page';
+
+	nextButton.setAttribute('data-token', currentPage + 1);
+	nextButton.setAttribute('class', 'btn-primary');
+	nextButton.innerHTML = 'Next Page';
+
+	var navigationButtons = document.createElement('ul');
+	var previousButtonLI = document.createElement('li');
+	var nextButtonLI = document.createElement('li');
+
+	previousButtonLI.appendChild(previousButton);
+	nextButtonLI.appendChild(nextButton);
+
+	navigationButtons.appendChild(previousButtonLI);
+	navigationButtons.appendChild(nextButtonLI);
+
+	navigationButtons.setAttribute('class','navigation-buttons');
+
+	previousButton.addEventListener('click', function() {
+		document.getElementById('search-results').innerHTML = '';
+		document.getElementById('navigationButtons').innerHTML = '';
+		if (currentPage - 1 < 1)
+			{
+				getPhotos(currentPage);
+			}
+		else
+			{
+				getPhotos(currentPage - 1);
+			}
+	});
+	nextButton.addEventListener('click', function() {
+		document.getElementById('search-results').innerHTML = '';
+		document.getElementById('navigationButtons').innerHTML = '';
+		if (currentPage + 1 > totalPages)
+			{
+				getPhotos(currentPage);
+			}
+		else
+			{
+				getPhotos(currentPage + 1);
+			}
+	});
+
+	// buttonContainer.appendChild(previousButton);
+	// buttonContainer.appendChild(nextButton);
+
+	// document.getElementById('navigationButtons').appendChild(previousButton);
+	// document.getElementById('navigationButtons').appendChild(nextButton);
+
+	document.getElementById('navigationButtons').appendChild(navigationButtons);
 }
+

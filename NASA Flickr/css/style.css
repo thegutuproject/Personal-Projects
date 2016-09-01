@@ -80,8 +80,7 @@ header {
 	background: #f8f8f8;
 }
 
-header, section, #left-side, #right-side
-{
+header, section, #left-side {
 	margin-bottom: 5px;
 }
 
@@ -91,4 +90,20 @@ header, section, #left-side, #right-side
 
 footer {
 	clear: both;
+	padding: 15px;
+}
+
+#navigationButtons {
+	margin: 0 auto;
+}
+
+.navigation-buttons {
+	list-style-type: none;
+	text-align: center;
+	padding: 5px;
+}
+
+.navigation-buttons li {
+	display: inline;
+	padding: 5px;
 }
