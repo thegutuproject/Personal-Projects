@@ -1,0 +1,25 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	color: #666666;
+}
+
+header {
+	height: 100px;
+	padding: 0 15px;
+	text-align: center;
+}
+
+#pageWrap {
+	padding: 5px;
+	width: 90%;
+	margin: 20px auto;
+}
+
+#left-side {
+	width: 15%;
+	float: left;
+	padding: 5px 15px;
+	height: 100%;
+}
