@@ -142,6 +142,8 @@ function getSize(photos, index) {
 // Function to create HTML objects. This needs major re-organizing, but I haven't figured out an efficient pattern.
 
 function createHTML(photo) {
+
+	// All "containers" so to speak
 	var liItem = document.createElement('li');
 	var leftDiv = document.createElement('div');
 	var rightDiv = document.createElement('div');
@@ -162,7 +164,7 @@ function createHTML(photo) {
 
 
 	// Mess, needs restructuring
-
+	// section to add properties to the various containers
 	leftDiv.setAttribute('class', 'list-left');
 	rightDiv.setAttribute('class', 'list-right');
 	previewImage.setAttribute('src', photo.size[1].source);
