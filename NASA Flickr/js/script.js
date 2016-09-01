@@ -83,7 +83,6 @@ function getPhotos(currentPage) {
 	photoRequest.onreadystatechange = function() {
 		if (photoRequest.readyState === 4 && photoRequest.status === 200) {
 			var photos = JSON.parse(photoRequest.response).photos;
-			console.log(JSON.parse(photoRequest.response).photos);
 			processInput(photos);
 			createButtonHTML(photos.page, photos.pages);
 		}
