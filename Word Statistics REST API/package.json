@@ -1,5 +1,5 @@
 {
-  "name": "Word Statistics REST API",
+  "name": "word_statistics_rest_api",
   "version": "0.0.0",
   "private": true,
   "scripts": {
