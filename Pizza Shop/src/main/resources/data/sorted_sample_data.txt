@@ -1,0 +1,10 @@
+Food        Time
+bread       Fri Sep 23 10:24:47 EDT 2016
+bread       Sun Oct 23 10:24:47 EDT 2016
+Bread       Tue Oct 25 10:24:47 EDT 2016
+Meat        Sat Sep 23 10:24:47 EDT 2017
+meatMeaT    Mon Sep 19 10:24:47 EDT 2016
+p1zza       Wed Oct 26 10:24:47 EDT 2016
+Pizza       Mon Oct 24 10:24:47 EDT 2016
+pizza       Thu Oct 27 10:24:47 EDT 2016
+VegVeg      Mon Sep 19 10:24:47 EDT 2016
