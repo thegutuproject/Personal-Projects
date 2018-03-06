@@ -1,15 +1,13 @@
 package com.thegutuproject.pizzashop;
 
 import com.thegutuproject.pizzashop.domain.OrderEntry;
+import com.thegutuproject.pizzashop.helper.OrderEntryComparator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 @SpringBootApplication
 public class PizzashopApplication {
@@ -33,6 +31,8 @@ public class PizzashopApplication {
 					}
 				}
 			}
+
+			Collections.sort(orderEntryList, new OrderEntryComparator());
 
 			for (OrderEntry orderEntry : orderEntryList) {
 				System.out.println("Food: " + orderEntry.getFoodItem() + " | Order Time: " + orderEntry.getOrderTime());
