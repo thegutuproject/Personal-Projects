@@ -5,8 +5,10 @@ import com.thegutuproject.pizzashop.helper.OrderEntryComparator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.*;
 
 @SpringBootApplication
@@ -15,6 +17,7 @@ public class PizzashopApplication {
 	public static void main(String[] args) {
 
 		String fileInput = args[0];
+		String fileOutput = args[1];
 
 		List<OrderEntry> orderEntryList = new ArrayList<>();
 
@@ -32,7 +35,18 @@ public class PizzashopApplication {
 				}
 			}
 
-			Collections.sort(orderEntryList, new OrderEntryComparator());
+			if (!orderEntryList.isEmpty()) {
+				Collections.sort(orderEntryList, new OrderEntryComparator());
+				BufferedWriter outputWriting = new BufferedWriter(new FileWriter(fileOutput));
+
+				outputWriting.write(String.format("%-11s %s%n", "Food", "Time"));
+
+				for (OrderEntry current : orderEntryList) {
+					outputWriting.write(String.format("%-9s %30s%n", current.getFoodItem(), current.getOrderTime()));
+				}
+
+				outputWriting.close();
+			}
 
 			for (OrderEntry orderEntry : orderEntryList) {
 				System.out.println("Food: " + orderEntry.getFoodItem() + " | Order Time: " + orderEntry.getOrderTime());
