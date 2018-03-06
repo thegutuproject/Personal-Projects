@@ -34,8 +34,6 @@ public class PizzashopApplication {
 
 		/**
 		 * @TODO
-		 * proper exception catching
-		 * split code up more, make it modular
 		 * write unit tests
 		 * expand structure for possible web use/db use
 		 * stub out resource, service, data provider, etc
