@@ -4,6 +4,7 @@ import com.thegutuproject.pizzashop.domain.OrderEntry;
 import com.thegutuproject.pizzashop.domain.OrderLog;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class OrderSorterHelper {
@@ -11,7 +12,7 @@ public class OrderSorterHelper {
 	public OrderLog createOrderLog(String inputFileLocation) {
 
 		OrderLog orderLog = new OrderLog();
-
+		Calendar orderDate = Calendar.getInstance();
 		try {
 
 			List<OrderEntry> orderEntryList = new ArrayList<>();
@@ -20,10 +21,14 @@ public class OrderSorterHelper {
 			Scanner inputReading = new Scanner(new FileReader(inputFileLocation));
 
 			while (inputReading.hasNext()) {
-				currentLine = inputReading.nextLine().split("[\t]+");
+				currentLine = inputReading.nextLine().split("[ ]{2,}|[\t]+");
 				if (currentLine.length == 2 && !("order").equals(currentLine[0].toLowerCase()) && !("time").equals(currentLine[1].toLowerCase())) {
 					if (!("").equals(currentLine[0]) && !("").equals(currentLine[1])) {
-						OrderEntry currentOrder = new OrderEntry(currentLine[0], new Date(Long.parseLong(currentLine[1]) * 1000));
+						
+						orderDate.setTimeInMillis(Long.parseLong(currentLine[1])*1000);
+						
+						OrderEntry currentOrder = new OrderEntry(currentLine[0], orderDate.getTime());
+						
 						orderEntryList.add(currentOrder);
 					}
 				}
@@ -32,7 +37,7 @@ public class OrderSorterHelper {
 			orderLog.setOrderEntryList(orderEntryList);
 
 		} catch (FileNotFoundException e) {
-			System.out.println("The file you specified does not exist or cannot be opened. Please try again");
+			System.out.println("The input file you specified does not exist or cannot be opened. Please try again");
 		} catch (IllegalStateException e) {
 			System.out.println("The file ended abruptly. Please ensure the file is valid and try again");
 		}  catch (Exception e) {
@@ -56,6 +61,8 @@ public class OrderSorterHelper {
 
 		if (orderLog != null && outputFileLocation != null && !"".equals(outputFileLocation)) {
 			try {
+				
+				SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a z");
 
 				BufferedWriter outputWriting = new BufferedWriter(new FileWriter(outputFileLocation));
 
@@ -63,14 +70,14 @@ public class OrderSorterHelper {
 
 				if (!orderLog.getOrderEntryList().isEmpty()) {
 					for (OrderEntry current : orderLog.getOrderEntryList()) {
-						outputWriting.write(String.format("%-9s %30s%n", current.getFoodItem(), current.getOrderTime()));
+						outputWriting.write(String.format("%-9s %28s%n", current.getFoodItem(), dateFormatter.format(current.getOrderTime())));
 					}
 				}
 
 				outputWriting.close();
 
 			}  catch (FileNotFoundException e) {
-				System.out.println("The file you are trying to write to cannot be accessed (most likely access denied) Please try again.");
+				System.out.println("The output file you specified does not exist or cannot be opened. Please try again.");
 			} catch (IOException e) {
 				System.out.println("Unfortunately the output cannot be saved to the location you specified. Please try again.");
 			} catch (Exception e) {

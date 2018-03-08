@@ -6,7 +6,7 @@ public class OrderEntry {
 
 	private String foodItem;
 	private Date orderTime;
-
+	
 	public OrderEntry() {
 
 	}
@@ -14,6 +14,11 @@ public class OrderEntry {
 	public OrderEntry(String foodItem, Date orderTime) {
 		this.foodItem = foodItem;
 		this.orderTime = orderTime;
+	}
+	
+	public OrderEntry(String foodItem, String orderTime) {
+		this.foodItem = foodItem;
+		this.orderTime = new Date(Long.parseLong(orderTime) * 1000);
 	}
 
 	public String getFoodItem() {
