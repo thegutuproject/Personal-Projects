@@ -1,17 +1,8 @@
 package com.thegutuproject.pizzashop;
 
-import com.thegutuproject.pizzashop.domain.OrderEntry;
 import com.thegutuproject.pizzashop.domain.OrderLog;
-import com.thegutuproject.pizzashop.helper.OrderEntryComparator;
 import com.thegutuproject.pizzashop.helper.OrderSorterHelper;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.util.*;
 
 @SpringBootApplication
 public class PizzashopApplication {
