@@ -132,10 +132,6 @@ public class OrderSorterHelperTests {
 			
 			reBuiltDataOrderLog.setOrderEntryList(orderEntryList);
 			
-			for(OrderEntry orderEntry : reBuiltDataOrderLog.getOrderEntryList()) {
-				System.out.println(orderEntry.getOrderTime());
-			}
-			
 			for (int i = 0; i < originalDataOrderLog.getOrderEntryList().size(); i++) {
 				Assert.assertEquals("Food Item from output and input should be the same", originalDataOrderLog.getOrderEntryList().get(i).getFoodItem() , reBuiltDataOrderLog.getOrderEntryList().get(i).getFoodItem());
 				Assert.assertEquals("Order Time from output and input should be the same", dateFormatter.format(originalDataOrderLog.getOrderEntryList().get(i).getOrderTime()), dateFormatter.format(reBuiltDataOrderLog.getOrderEntryList().get(i).getOrderTime()));
