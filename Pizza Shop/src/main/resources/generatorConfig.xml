@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <classPathEntry location="C:\Users\Alex\.m2\repository\mysql\mysql-connector-java\8.0.9-rc\mysql-connector-java-8.0.9-rc.jar" />
+
+    <context id="OrderManagerDB" targetRuntime="MyBatis3">
+
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+        <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" />
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/pizza_shop"
+                        userId="${username}"
+                        password="${password}">
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="com.thegutuproject.pizzashop.db.model" targetProject="I:\Projects\Personal-Projects\Pizza Shop\src\main\java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="com.thegutuproject.pizzashop.db.mapper"  targetProject="I:\Projects\Personal-Projects\Pizza Shop\src\main\java">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.thegutuproject.pizzashop.db.mapper"  targetProject="I:\Projects\Personal-Projects\Pizza Shop\src\main\java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <table tableName="ORDER_ENTRY" domainObjectName="OrderEntryDb" schema="pizza_shop">
+            <property name="useActualColumnNames" value="false" />
+            <generatedKey column="ORDER_ENTRY_ID" sqlStatement="MySql" identity="true" type="post" />
+            <columnOverride column="FOOD_ITEM" javaType="String" />
+            <columnOverride column="ORDER_TIME" javaType="java.sql.Timestamp" />
+            <columnOverride column="ORDER_LOG_ID" javaType="Integer" />
+        </table>
+
+        <table tableName="ORDER_LOG" domainObjectName="OrderLogDb" schema="pizza_shop">
+            <property name="useActualColumnNames" value="false" />
+            <generatedKey column="ORDER_LOG_ID" sqlStatement="MySql" identity="true" type="post" />
+        </table>
+
+    </context>
+</generatorConfiguration>

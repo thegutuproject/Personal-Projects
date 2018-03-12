@@ -7,8 +7,10 @@ import java.util.List;
 
 public interface OrderEntryDataProvider {
 	
-	List<OrderEntry> getOrderEntryById(Integer orderEntryId);
+	OrderEntry getOrderEntryById(Integer orderEntryId);
+	
 	List<OrderEntry> getOrderEntriesByFood(String foodItem);
+	
 	List<OrderEntry> getOrderEntriesByTime(Timestamp orderTime);
 	
 }

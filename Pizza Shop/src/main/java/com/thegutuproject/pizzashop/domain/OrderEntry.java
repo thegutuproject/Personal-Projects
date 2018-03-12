@@ -4,8 +4,10 @@ import java.util.Date;
 
 public class OrderEntry {
 
+	private Integer orderEntryId;
 	private String foodItem;
 	private Date orderTime;
+	private Integer orderLogId;
 	
 	public OrderEntry() {
 
@@ -21,13 +23,13 @@ public class OrderEntry {
 		this.orderTime = new Date(Long.parseLong(orderTime) * 1000);
 	}
 	
-//	public Integer getOrderEntryId() {
-//		return orderEntryId;
-//	}
+	public Integer getOrderEntryId() {
+		return orderEntryId;
+	}
 	
-//	public void setOrderEntryId(Integer orderEntryId) {
-//		this.orderEntryId = orderEntryId;
-//	}
+	public void setOrderEntryId(Integer orderEntryId) {
+		this.orderEntryId = orderEntryId;
+	}
 	
 	public String getFoodItem() {
 		return foodItem;
@@ -45,11 +47,11 @@ public class OrderEntry {
 		this.orderTime = orderTime;
 	}
 	
-//	public Integer getOrderLogId() {
-//		return orderLogId;
-//	}
-//
-//	public void setOrderLogId(Integer orderLogId) {
-//		this.orderLogId = orderLogId;
-//	}
+	public Integer getOrderLogId() {
+		return orderLogId;
+	}
+
+	public void setOrderLogId(Integer orderLogId) {
+		this.orderLogId = orderLogId;
+	}
 }

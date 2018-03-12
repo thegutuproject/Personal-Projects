@@ -32,22 +32,30 @@ public class OrderLogDataProviderImpl implements OrderLogDataProvider {
 	@Autowired
 	OrderEntryDao orderEntryDao;
 	
-	// TODO: Add check to ensure only 1 order log is being returned. cancel if multiple
 	@Override
 	public OrderLog getOrderLogById(Integer orderLogId) {
 		OrderLogDbExample orderLogDbExample = orderLogDao.getDbExample();
 		orderLogDbExample.createCriteria().andOrderLogIdEqualTo(orderLogId);
-		OrderLogDb orderLogDb = orderLogDao.get(orderLogDbExample).get(0);
+		
+		List<OrderLogDb> orderLogDBList = orderLogDao.get(orderLogDbExample);
+		
 		OrderLog orderLog = new OrderLog();
-		dbBeanMapper.map(orderLogDb, orderLog);
+		
+		if (!orderLogDBList.isEmpty()) {
+			OrderLogDb orderLogDb =	orderLogDBList.get(0);
+			dbBeanMapper.map(orderLogDb, orderLog);
+		}
 		
 		OrderEntryDbExample orderEntryDbExample = orderEntryDao.getDbExample();
 		orderEntryDbExample.createCriteria().andOrderLogIdEqualTo(orderLogId);
+		
 		List<OrderEntryDb> orderEntryDbList = orderEntryDao.get(orderEntryDbExample);
+		
 		List<OrderEntry> orderEntryList = new ArrayList<>();
 		dbBeanMapper.map(orderEntryDbList, orderEntryList);
 		
 		orderLog.setOrderEntryList(orderEntryList);
+		
 		return orderLog;
 	}
 }

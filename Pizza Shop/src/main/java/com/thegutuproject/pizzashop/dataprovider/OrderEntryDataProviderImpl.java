@@ -34,39 +34,39 @@ public class OrderEntryDataProviderImpl implements OrderEntryDataProvider {
 	
 	// TODO: Add check to ensure only 1 order log is being returned. cancel if multiple
 	@Override
-	public List<OrderEntry> getOrderEntryById(Integer orderEntryId) {
-		OrderEntryDbExample orderEntryDbExample = orderEntryDao.getDbExample();
-		orderEntryDbExample.createCriteria().andOrderEntryIdEqualTo(orderEntryId);
-		List<OrderEntryDb> orderEntryDbList = orderEntryDao.get(orderEntryDbExample);
-		
-		List<OrderEntry> orderEntryDomainList = new ArrayList<>();
-		dbBeanMapper.map(orderEntryDbList, orderEntryDomainList);
-		
-		return orderEntryDomainList;
+	public OrderEntry getOrderEntryById(Integer orderEntryId) {
+		// Using the primary key implementation to return a single order entry object, since each ID is unique
+		OrderEntry orderEntry = new OrderEntry();
+		OrderEntryDb orderEntryDb = orderEntryDao.get(orderEntryId);
+		dbBeanMapper.map(orderEntryDb, orderEntry);
+		return orderEntry;
 	}
 	
 	@Override
 	public List<OrderEntry> getOrderEntriesByFood(String foodItem) {
+		
 		OrderEntryDbExample orderEntryDbExample = orderEntryDao.getDbExample();
 		orderEntryDbExample.createCriteria().andFoodItemEqualTo(foodItem);
+		
 		List<OrderEntryDb> orderEntryDbList = orderEntryDao.get(orderEntryDbExample);
 		
 		List<OrderEntry> orderEntryDomainList = new ArrayList<>();
 		dbBeanMapper.map(orderEntryDbList, orderEntryDomainList);
-		/**
-		 * Anything related to removing data, or adding data to the object before being converted can be done here
-		 */
+		
 		return orderEntryDomainList;
 	}
 	
 	@Override
 	public List<OrderEntry> getOrderEntriesByTime(Timestamp orderTime) {
+		
 		OrderEntryDbExample orderEntryDbExample = orderEntryDao.getDbExample();
 		orderEntryDbExample.createCriteria().andOrderTimeEqualTo(orderTime);
+		
 		List<OrderEntryDb> orderEntryDbList = orderEntryDao.get(orderEntryDbExample);
 		
 		List<OrderEntry> orderEntryDomainList = new ArrayList<>();
 		dbBeanMapper.map(orderEntryDbList, orderEntryDomainList);
+		
 		return orderEntryDomainList;
 	}
 }

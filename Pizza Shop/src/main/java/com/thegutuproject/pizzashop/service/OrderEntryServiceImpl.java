@@ -5,6 +5,7 @@ import com.thegutuproject.pizzashop.domain.OrderEntry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -14,7 +15,17 @@ public class OrderEntryServiceImpl implements OrderEntryService {
 	OrderEntryDataProvider orderEntryDataProvider;
 	
 	@Override
-	public List<OrderEntry> getOrderEntryByOrderEntryId(Integer orderEntryId) {
+	public OrderEntry getOrderEntryById(Integer orderEntryId) {
 		return orderEntryDataProvider.getOrderEntryById(orderEntryId);
+	}
+	
+	@Override
+	public List<OrderEntry> getOrderEntriesByFood(String foodItem) {
+		return orderEntryDataProvider.getOrderEntriesByFood(foodItem);
+	}
+	
+	@Override
+	public List<OrderEntry> getOrderEntriesByTime(Timestamp orderTime) {
+		return orderEntryDataProvider.getOrderEntriesByTime(orderTime);
 	}
 }

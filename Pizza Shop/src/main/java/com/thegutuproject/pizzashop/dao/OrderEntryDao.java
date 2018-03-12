@@ -6,6 +6,7 @@ import com.thegutuproject.pizzashop.db.model.OrderEntryDbExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -27,7 +28,7 @@ public class OrderEntryDao {
 	}
 	
 	public List<OrderEntryDb> get(OrderEntryDbExample orderEntryDbExample) {
-		List<OrderEntryDb> orderEntryDbList = null;
+		List<OrderEntryDb> orderEntryDbList = new ArrayList<>();
 		try {
 			orderEntryDbList = getMapper().selectByExample(orderEntryDbExample);
 		} catch (Exception e) {
@@ -44,7 +45,7 @@ public class OrderEntryDao {
 	}
 	
 	public OrderEntryDb get(Integer orderEntryId) {
-		OrderEntryDb orderEntryDb = null;
+		OrderEntryDb orderEntryDb = new OrderEntryDb();
 		try {
 			orderEntryDb = getMapper().selectByPrimaryKey(orderEntryId);
 		} catch (Exception e) {

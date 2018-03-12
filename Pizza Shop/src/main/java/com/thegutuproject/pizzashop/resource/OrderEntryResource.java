@@ -1,7 +1,6 @@
 package com.thegutuproject.pizzashop.resource;
 
 import com.thegutuproject.pizzashop.domain.OrderEntry;
-import com.thegutuproject.pizzashop.model.OrderEntryModel;
 import com.thegutuproject.pizzashop.service.OrderEntryService;
 import io.swagger.annotations.*;
 import org.dozer.DozerBeanMapper;
@@ -14,8 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.util.ArrayList;
-import java.util.List;
 
 @Api(value="Order Entry", description="API to get Order Entry details")
 @RestController
@@ -41,14 +38,11 @@ public class OrderEntryResource {
 			@ApiResponse(code = 500, message = "Server error"),
 			@ApiResponse(code = 700, message = "Business rule failure")
 	})
-	public List<OrderEntryModel> getOrderEntryByOrderEntryId(@PathVariable("orderEntryId") @ApiParam("The Id of the order entry to be retrieved")  final int orderEntryId) {
+	public OrderEntry getOrderEntryById(@PathVariable("orderEntryId") @ApiParam("The Id of the order entry to be retrieved")  final int orderEntryId) {
 		// Domain object returned by backend.
 		// This still needs to be null checked.
 		// Ideas: static generic exception handler
-		List<OrderEntry> orderEntry = orderEntryService.getOrderEntryByOrderEntryId(orderEntryId);
-		List<OrderEntryModel> orderEntryModel = new ArrayList<>();
-		dbBeanMapper.map(orderEntry, orderEntryModel);
-		//Return whole model
-		return orderEntryModel;
+		OrderEntry orderEntry = orderEntryService.getOrderEntryById(orderEntryId);
+		return orderEntry;
 	}
 }

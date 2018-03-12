@@ -6,6 +6,7 @@ import com.thegutuproject.pizzashop.db.model.OrderLogDbExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -27,14 +28,17 @@ public class OrderLogDao {
 	}
 	
 	public List<OrderLogDb> get(OrderLogDbExample orderLogDbExample) {
+		
+		List<OrderLogDb> orderLogDbList = new ArrayList<>();
+		
 		try {
-			return getMapper().selectByExample(orderLogDbExample);
+			orderLogDbList = getMapper().selectByExample(orderLogDbExample);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Error retrieving Order Log by example");
 		}
 		
-		return null;
+		return orderLogDbList;
 		
 	}
 	
