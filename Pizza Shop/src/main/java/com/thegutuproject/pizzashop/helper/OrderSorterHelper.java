@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class OrderSorterHelper {
-
+	
 	public OrderLog createOrderLog(String inputFileLocation) {
 
 		OrderLog orderLog = new OrderLog();
