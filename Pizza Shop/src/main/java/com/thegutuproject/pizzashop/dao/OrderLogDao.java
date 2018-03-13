@@ -12,8 +12,16 @@ import java.util.List;
 @Repository
 public class OrderLogDao {
 	
+	/**
+	 * Very basic DAO implementation, a better approach would
+	 * be to make an abstract one and have these extend it. This
+	 * way you only write the code once. Either way, all of them
+	 * should be (relatively) similar, There needs to be a better
+	 * method of handling exceptions though...
+	 */
+	
 	@Autowired
-	private OrderLogDbMapper orderLogDbMapper;
+	public OrderLogDbMapper orderLogDbMapper;
 	
 	public OrderLogDbMapper getMapper() {
 		return orderLogDbMapper;

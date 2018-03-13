@@ -32,6 +32,12 @@ public class OrderLogDataProviderImpl implements OrderLogDataProvider {
 	@Autowired
 	OrderEntryDao orderEntryDao;
 	
+	/**
+	 * Returns a list of Order Log objects from the DB by
+	 * selecting all that have matching values for field "OrderLogId"
+	 * @param orderLogId
+	 * @return
+	 */
 	@Override
 	public OrderLog getOrderLogById(Integer orderLogId) {
 		OrderLogDbExample orderLogDbExample = orderLogDao.getDbExample();

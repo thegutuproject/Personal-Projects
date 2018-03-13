@@ -1,29 +1,33 @@
 package com.thegutuproject.pizzashop.model;
 
-import java.sql.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.io.Serializable;
+import java.sql.Timestamp;
 
 /**
  * Model is used to send to the web interface
  * Possible uses might include removing backend specific fields
  */
 
-public class OrderEntryModel {
+public class OrderEntryModel implements Serializable {
 	
 	private String foodItem;
-	private Date orderTime;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
+	private Timestamp orderTime;
 	
 	public OrderEntryModel() {
 	
 	}
 	
-	public OrderEntryModel(String foodItem, Date orderTime) {
+	public OrderEntryModel(String foodItem, Timestamp orderTime) {
 		this.foodItem = foodItem;
 		this.orderTime = orderTime;
 	}
 	
 	public OrderEntryModel(String foodItem, String orderTime) {
 		this.foodItem = foodItem;
-		this.orderTime = new Date(Long.parseLong(orderTime) * 1000);
+		this.orderTime = new Timestamp(Long.parseLong(orderTime) * 1000);
 	}
 	
 	public String getFoodItem() {
@@ -34,11 +38,11 @@ public class OrderEntryModel {
 		this.foodItem = foodItem;
 	}
 	
-	public Date getOrderTime() {
+	public Timestamp getOrderTime() {
 		return orderTime;
 	}
 	
-	public void setOrderTime(Date orderTime) {
+	public void setOrderTime(Timestamp orderTime) {
 		this.orderTime = orderTime;
 	}
 }

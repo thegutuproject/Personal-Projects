@@ -2,12 +2,24 @@ package com.thegutuproject.pizzashop.helper;
 
 import com.thegutuproject.pizzashop.domain.OrderEntry;
 import com.thegutuproject.pizzashop.domain.OrderLog;
+import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+
+@Component
 public class OrderSorterHelper {
+	
+	/**
+	 * Method used to take in text and convert it into
+	 * an appropriate Order Log, with Order Entries
+	 * created along the way.
+	 *
+	 * @param inputFileLocation
+	 * @return OrderLog
+	 */
 	
 	public OrderLog createOrderLog(String inputFileLocation) {
 
@@ -48,7 +60,14 @@ public class OrderSorterHelper {
 		return orderLog;
 
 	}
-
+	
+	/**
+	 * Simple sorting method, uses the custom
+	 * Comparator to sort lexicographically
+	 *
+	 * @param orderLog
+	 */
+	
 	public void sortOrderLog(OrderLog orderLog) {
 		if (orderLog != null) {
 			if (orderLog.getOrderEntryList() != null && !orderLog.getOrderEntryList().isEmpty()) {
@@ -56,13 +75,27 @@ public class OrderSorterHelper {
 			}
 		}
 	}
+	
+	/**
+	 * Takes in the Order Log and prints it out
+	 * to a file specified by the user. This also
+	 * prints out a header, as well as converts the
+	 * epoch time (initially given) into a human readable form.
+	 *
+	 * Please Note: This makes the assumption that timezone is
+	 * not relevant. Java automatically converts the given epoch
+	 * time into a time relative to your location.
+	 *
+	 * @param orderLog
+	 * @param outputFileLocation
+	 */
 
 	public void writeOrderLogToFile(OrderLog orderLog, String outputFileLocation) {
 
 		if (orderLog != null && outputFileLocation != null && !"".equals(outputFileLocation)) {
 			try {
 				
-				SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a z");
+				SimpleDateFormat outputDataFormatter = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a z");
 
 				BufferedWriter outputWriting = new BufferedWriter(new FileWriter(outputFileLocation));
 
@@ -70,7 +103,7 @@ public class OrderSorterHelper {
 
 				if (!orderLog.getOrderEntryList().isEmpty()) {
 					for (OrderEntry current : orderLog.getOrderEntryList()) {
-						outputWriting.write(String.format("%-9s %28s%n", current.getFoodItem(), dateFormatter.format(current.getOrderTime())));
+						outputWriting.write(String.format("%-9s %28s%n", current.getFoodItem(), outputDataFormatter.format(current.getOrderTime())));
 					}
 				}
 

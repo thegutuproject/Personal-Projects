@@ -1,5 +1,6 @@
 package com.thegutuproject.pizzashop.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * Possible uses might include removing backend specific fields
  */
 
-public class OrderLogModel {
+public class OrderLogModel implements Serializable {
 	
 	private List<OrderEntryModel> orderEntryList;
 	

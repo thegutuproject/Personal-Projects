@@ -12,8 +12,16 @@ import java.util.List;
 @Repository
 public class OrderEntryDao {
 	
+	/**
+	 * Very basic DAO implementation, a better approach would
+	 * be to make an abstract one and have these extend it. This
+	 * way you only write the code once. Either way, all of them
+	 * should be (relatively) similar, There needs to be a better
+	 * method of handling exceptions though...
+	 */
+	
 	@Autowired
-	private OrderEntryDbMapper orderEntryDbMapper;
+	public OrderEntryDbMapper orderEntryDbMapper;
 	
 	public OrderEntryDbMapper getMapper() {
 		return orderEntryDbMapper;
@@ -60,6 +68,17 @@ public class OrderEntryDao {
 		return orderEntryDb;
 	}
 	
+	public int create(OrderEntryDb orderEntryDb) {
+		try {
+			return getMapper().insert(orderEntryDb);
+		} catch (Exception e) {
+			System.out.println("Error inserting Order Entry");
+		}
+		
+		return 0;
+		
+	}
+	
 	public int delete(OrderEntryDbExample orderEntryDbExample) {
 		try {
 			return getMapper().deleteByExample(orderEntryDbExample);
@@ -81,5 +100,7 @@ public class OrderEntryDao {
 		return 0;
 		
 	}
+	
+	
 	
 }

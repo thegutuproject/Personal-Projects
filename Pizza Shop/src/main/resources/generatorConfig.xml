@@ -5,9 +5,9 @@
 
 <generatorConfiguration>
 
-    <classPathEntry location="C:\Users\Alex\.m2\repository\mysql\mysql-connector-java\8.0.9-rc\mysql-connector-java-8.0.9-rc.jar" />
+    <classPathEntry location="${user.home}\.m2\repository\mysql\mysql-connector-java\8.0.9-rc\mysql-connector-java-8.0.9-rc.jar" />
 
-    <context id="OrderManagerDB" targetRuntime="MyBatis3">
+    <context id="OrderManagerDB" defaultModelType="flat" targetRuntime="MyBatis3">
 
         <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
         <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" />
@@ -17,8 +17,8 @@
 
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
                         connectionURL="jdbc:mysql://127.0.0.1:3306/pizza_shop"
-                        userId="${username}"
-                        password="${password}">
+                        userId="admin"
+                        password="testpassword">
             <property name="nullCatalogMeansCurrent" value="true"/>
         </jdbcConnection>
 

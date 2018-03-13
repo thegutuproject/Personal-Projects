@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Api(value="Order Log", description="API to get Order Log details")
+@Api(value="Order Log", description="API to get details on order logs submitted to the system")
 @RestController
 public class OrderLogResource {
 	
@@ -27,21 +27,22 @@ public class OrderLogResource {
 	@Autowired
 	OrderLogService orderLogService;
 	
-	@RequestMapping(value="/orderlog/{orderLogId}", method= RequestMethod.GET)
+	@RequestMapping(value="/orderlog/id/{orderLogId}", method= RequestMethod.GET)
 	@Produces(MediaType.APPLICATION_JSON)
-	@ApiOperation(value = "get Order Logs by ID")
+	@ApiOperation(value = "Retrieve Order Log based on ID")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Ok"),
 			@ApiResponse(code = 400, message = "Bad / Invalid input"),
 			@ApiResponse(code = 401, message = "Authorization failed"),
 			@ApiResponse(code = 404, message = "Resource not found"),
 			@ApiResponse(code = 500, message = "Server error"),
-			@ApiResponse(code = 700, message = "Business rule failure")
 	})
-	public OrderLog getOrderLogById(@PathVariable("orderLogId") @ApiParam("The Id of the order log to be retrieved")  final int orderLogId) {
+	public OrderLog getOrderLogById(
+			@PathVariable("orderLogId") @ApiParam("order log id")  final int orderLogId) {
 		// Domain object returned by backend.
-		// This still needs to be null checked.
-		// Ideas: static generic exception handler
+		// There is some rudimentary error checking done at the DAO level,
+		// but it needs to be expanded upon
+		
 		OrderLog orderLog = orderLogService.getOrderLogById(orderLogId);
 		return orderLog;
 	}

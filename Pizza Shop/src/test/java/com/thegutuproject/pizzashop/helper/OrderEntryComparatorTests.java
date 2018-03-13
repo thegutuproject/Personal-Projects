@@ -3,9 +3,12 @@ package com.thegutuproject.pizzashop.helper;
 import com.thegutuproject.pizzashop.domain.OrderEntry;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.*;
 
+@RunWith(SpringRunner.class)
 public class OrderEntryComparatorTests {
 	
 	private Calendar date = Calendar.getInstance();

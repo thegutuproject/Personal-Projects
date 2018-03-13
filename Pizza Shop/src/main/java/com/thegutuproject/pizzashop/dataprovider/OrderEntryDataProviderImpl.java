@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -32,7 +33,12 @@ public class OrderEntryDataProviderImpl implements OrderEntryDataProvider {
 	@Autowired
 	OrderEntryDao orderEntryDao;
 	
-	// TODO: Add check to ensure only 1 order log is being returned. cancel if multiple
+	/**
+	 * Returns a single Order Entry object from
+	 * the DB due to using selectByPrimaryKey
+	 * @param orderEntryId
+	 * @return OrderEntry
+	 */
 	@Override
 	public OrderEntry getOrderEntryById(Integer orderEntryId) {
 		// Using the primary key implementation to return a single order entry object, since each ID is unique
@@ -42,6 +48,12 @@ public class OrderEntryDataProviderImpl implements OrderEntryDataProvider {
 		return orderEntry;
 	}
 	
+	/**
+	 * Returns a list of Order Entry objects from the DB by
+	 * selecting all that have matching values for field "FoodItem"
+	 * @param foodItem
+	 * @return List<OrderEntry>
+	 */
 	@Override
 	public List<OrderEntry> getOrderEntriesByFood(String foodItem) {
 		
@@ -56,11 +68,17 @@ public class OrderEntryDataProviderImpl implements OrderEntryDataProvider {
 		return orderEntryDomainList;
 	}
 	
+	/**
+	 * Returns a list of Order Entry objects from the DB by
+	 * selecting all that have matching values for field "OrderTime"
+	 * @param orderTime
+	 * @return List<OrderEntry>
+	 */
 	@Override
-	public List<OrderEntry> getOrderEntriesByTime(Timestamp orderTime) {
+	public List<OrderEntry> getOrderEntriesByTime(Date orderTime) {
 		
 		OrderEntryDbExample orderEntryDbExample = orderEntryDao.getDbExample();
-		orderEntryDbExample.createCriteria().andOrderTimeEqualTo(orderTime);
+		orderEntryDbExample.createCriteria().andOrderTimeEqualTo(new Timestamp(orderTime.getTime()*1000));
 		
 		List<OrderEntryDb> orderEntryDbList = orderEntryDao.get(orderEntryDbExample);
 		
@@ -69,4 +87,47 @@ public class OrderEntryDataProviderImpl implements OrderEntryDataProvider {
 		
 		return orderEntryDomainList;
 	}
+	
+	/**
+	 * Returns a list of Order Entry objects from the DB by
+	 * selecting all that have matching values for field "OrderTime"
+	 * @param orderLogId
+	 * @return List<OrderEntry>
+	 */
+	@Override
+	public List<OrderEntry> getOrderEntriesByOrderLogId(Integer orderLogId) {
+		
+		OrderEntryDbExample orderEntryDbExample = orderEntryDao.getDbExample();
+		orderEntryDbExample.createCriteria().andOrderLogIdEqualTo(orderLogId);
+		
+		List<OrderEntryDb> orderEntryDbList = orderEntryDao.get(orderEntryDbExample);
+		
+		List<OrderEntry> orderEntryDomainList = new ArrayList<>();
+		dbBeanMapper.map(orderEntryDbList, orderEntryDomainList);
+		
+		return orderEntryDomainList;
+	}
+	
+	/**
+	 * Inserts an Order Entry object into the DB and
+	 * returns that object upon completion. This also
+	 * populates the ID field automatically.
+	 * @param foodItem
+	 * @param orderTime
+	 * @param orderLogId
+	 * @return Integer
+	 */
+	@Override
+	public Integer insertOrderEntry(String foodItem, String orderTime, Integer orderLogId) {
+		
+		Timestamp orderTimeStamp = new Timestamp(new Date(Long.parseLong(orderTime)*1000).getTime());
+		
+		OrderEntryDb orderEntryDb = new OrderEntryDb();
+		orderEntryDb.setFoodItem(foodItem);
+		orderEntryDb.setOrderTime(orderTimeStamp);
+		orderEntryDb.setOrderLogId(orderLogId);
+		
+		return orderEntryDao.create(orderEntryDb);
+	}
+	
 }

@@ -1,18 +1,19 @@
 package com.thegutuproject.pizzashop.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class OrderLog {
+public class OrderLog implements Serializable {
 
-	private Integer orderlogId;
+	private Integer orderLogId;
 	private List<OrderEntry> orderEntryList;
 	
-	public Integer getOrderlogId() {
-		return orderlogId;
+	public Integer getOrderLogId() {
+		return orderLogId;
 	}
 	
-	public void setOrderlogId(Integer orderlogId) {
-		this.orderlogId = orderlogId;
+	public void setOrderLogId(Integer orderLogId) {
+		this.orderLogId = orderLogId;
 	}
 	
 	public List<OrderEntry> getOrderEntryList() {

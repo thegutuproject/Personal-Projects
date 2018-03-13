@@ -7,14 +7,14 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context-4.1.xsd">
 
-    <context:property-placeholder location="classpath:resources/config/application.properties" />
+    <!--<context:property-placeholder location="classpath:src/resources/config/application.properties" />-->
     <context:component-scan base-package="com.thegutuproject.pizzashop.*" />
 
     <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="${spring.datasource.driverClassName}" />
-        <property name="url" value="${spring.datasource.url}" />
-        <property name="username" value="${spring.datasource.username}" />
-        <property name="password" value="${spring.datasource.password}" />
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/pizza_shop" />
+        <property name="username" value="admin" />
+        <property name="password" value="testpassword" />
     </bean>
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
