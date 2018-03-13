@@ -24,7 +24,6 @@ public class OrderSorterHelper {
 	public OrderLog createOrderLog(String inputFileLocation) {
 
 		OrderLog orderLog = new OrderLog();
-		Calendar orderDate = Calendar.getInstance();
 		try {
 
 			List<OrderEntry> orderEntryList = new ArrayList<>();
@@ -37,9 +36,7 @@ public class OrderSorterHelper {
 				if (currentLine.length == 2 && !("order").equals(currentLine[0].toLowerCase()) && !("time").equals(currentLine[1].toLowerCase())) {
 					if (!("").equals(currentLine[0]) && !("").equals(currentLine[1])) {
 						
-						orderDate.setTimeInMillis(Long.parseLong(currentLine[1])*1000);
-						
-						OrderEntry currentOrder = new OrderEntry(currentLine[0], orderDate.getTime());
+						OrderEntry currentOrder = new OrderEntry(currentLine[0], new Date(Long.parseLong(currentLine[1])*1000));
 						
 						orderEntryList.add(currentOrder);
 					}

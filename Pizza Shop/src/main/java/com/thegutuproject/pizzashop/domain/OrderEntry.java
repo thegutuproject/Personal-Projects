@@ -2,9 +2,10 @@ package com.thegutuproject.pizzashop.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class OrderEntry {
+public class OrderEntry implements Serializable {
 
 	private Integer orderEntryId;
 	private String foodItem;

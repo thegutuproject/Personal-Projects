@@ -109,8 +109,7 @@ public class OrderSorterHelperTests {
 		OrderLog originalDataOrderLog = orderSorterHelper.createOrderLog(original_data);
 		orderSorterHelper.writeOrderLogToFile(originalDataOrderLog, unit_test_output);
 
-		SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a z"); //  10/24/2016 10:24:47 AM EDT
-//		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); //  10/24/2016 10:24:47 AM EDT
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a z");
 
 		try {
 			Calendar orderDate = Calendar.getInstance();
