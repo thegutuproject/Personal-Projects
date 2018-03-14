@@ -200,14 +200,9 @@
                 <includes>
                     <include>config/*.xml</include>
                     <include>config/*.properties</include>
-                    <include>data/*.txt</include>
                     <include>*.xml</include>
                 </includes>
                 <targetPath>resources</targetPath>
-            </resource>
-            <resource>
-                <directory>src/main/resources/data</directory>
-                <targetPath>src/test/resources</targetPath>
             </resource>
             <resource>
                 <directory>src/main/java/com/thegutuproject/pizzashop/db/mapper</directory>
