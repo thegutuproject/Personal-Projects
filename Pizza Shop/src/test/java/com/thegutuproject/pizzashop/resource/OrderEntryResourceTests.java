@@ -2,14 +2,13 @@ package com.thegutuproject.pizzashop.resource;
 
 import com.thegutuproject.pizzashop.domain.OrderEntry;
 import com.thegutuproject.pizzashop.service.OrderEntryService;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.sql.Timestamp;
@@ -20,7 +19,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 @WebMvcTest(OrderEntryResource.class)
 public class OrderEntryResourceTests {
 	
@@ -29,6 +28,9 @@ public class OrderEntryResourceTests {
 
 	@MockBean
 	private OrderEntryService orderEntryService;
+	
+	@Autowired
+	OrderEntryResource orderEntryResource;
 	
 	public SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 	public OrderEntry sampleOrderEntry;
@@ -49,6 +51,11 @@ public class OrderEntryResourceTests {
 		
 	}
 
+	@Test
+	public void testAutowireWorks() {
+		Assert.assertNotNull(orderEntryResource);
+	}
+	
 	@Test
 	public void testOrderEntryResourceSendsProperObject() throws Exception {
 		when(orderEntryService.getOrderEntryById(2)).thenReturn(sampleOrderEntry);

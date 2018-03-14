@@ -49,7 +49,9 @@ public class OrderSorterHelper {
 			System.out.println("The input file you specified does not exist or cannot be opened. Please try again");
 		} catch (IllegalStateException e) {
 			System.out.println("The file ended abruptly. Please ensure the file is valid and try again");
-		}  catch (Exception e) {
+		} catch (NullPointerException e) {
+			System.out.println("The path you provided is not a valid file.");
+		} catch (Exception e) {
 			System.out.println("Something went wrong with loading data from the file you requested. Please try again.");
 			e.printStackTrace();
 		}
@@ -110,6 +112,8 @@ public class OrderSorterHelper {
 				System.out.println("The output file you specified does not exist or cannot be opened. Please try again.");
 			} catch (IOException e) {
 				System.out.println("Unfortunately the output cannot be saved to the location you specified. Please try again.");
+			} catch (NullPointerException e) {
+				System.out.println("The path you provided is not a valid file.");
 			} catch (Exception e) {
 				System.out.println("Something went wrong with outputting your data to a file. Please try again.");
 				e.printStackTrace();

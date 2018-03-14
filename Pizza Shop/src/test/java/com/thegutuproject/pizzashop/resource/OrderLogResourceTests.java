@@ -3,14 +3,13 @@ package com.thegutuproject.pizzashop.resource;
 import com.thegutuproject.pizzashop.domain.OrderEntry;
 import com.thegutuproject.pizzashop.domain.OrderLog;
 import com.thegutuproject.pizzashop.service.OrderLogService;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.sql.Timestamp;
@@ -22,7 +21,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 @WebMvcTest(OrderLogResource.class)
 public class OrderLogResourceTests {
 	
@@ -31,6 +30,9 @@ public class OrderLogResourceTests {
 	
 	@MockBean
 	private OrderLogService orderLogService;
+	
+	@Autowired
+	private OrderLogResource orderLogResource;
 	
 	private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 	
@@ -69,6 +71,11 @@ public class OrderLogResourceTests {
 		
 		sampleOrderLog.setOrderLogId(1);
 		sampleOrderLog.setOrderEntryList(sampleOrderEntryList);
+	}
+	
+	@Test
+	public void contextLoads() {
+		Assert.assertNotNull(orderLogResource);
 	}
 	
 	@Test
