@@ -16,6 +16,8 @@ public class OrderEntryComparatorTests {
 	@Test
 	public void testComparatorDifferentNameSameTime() {
 		
+		System.out.println("TEST RUNNING: testComparatorDifferentNameSameTime");
+		
 		List<OrderEntry> orderEntries = new ArrayList<>();
 		
 		OrderEntry orderEntry1 = new OrderEntry("AAAC", "1477405487"); // youngest
@@ -39,6 +41,8 @@ public class OrderEntryComparatorTests {
 	
 	@Test
 	public void testComparatorSameNameDifferentTime() {
+		
+		System.out.println("TEST RUNNING: testComparatorSameNameDifferentTime");
 		
 		List<OrderEntry> orderEntries = new ArrayList<>();
 		

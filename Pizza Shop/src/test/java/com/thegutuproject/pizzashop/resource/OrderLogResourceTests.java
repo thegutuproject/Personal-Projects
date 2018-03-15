@@ -2,7 +2,7 @@ package com.thegutuproject.pizzashop.resource;
 
 import com.thegutuproject.pizzashop.domain.OrderEntry;
 import com.thegutuproject.pizzashop.domain.OrderLog;
-import com.thegutuproject.pizzashop.service.OrderLogService;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,9 +28,9 @@ public class OrderLogResourceTests {
 	
 	@Autowired
 	private MockMvc mockMvc;
-	
+
 	@MockBean
-	private OrderLogService orderLogService;
+	private OrderLogResource orderLogResource;
 	
 	private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 	
@@ -72,8 +72,19 @@ public class OrderLogResourceTests {
 	}
 	
 	@Test
+	public void testAutowired() {
+		System.out.println("TEST RUNNING: testAutowired");
+		
+		Assert.assertNotNull(orderLogResource);
+		Assert.assertNotNull(mockMvc);
+	}
+	
+	@Test
 	public void shouldReturnOrderEntryObject() throws Exception {
-		when(orderLogService.getOrderLogById(1)).thenReturn(sampleOrderLog);
+		
+		System.out.println("TEST RUNNING: shouldReturnOrderEntryObject");
+		
+		when(orderLogResource.getOrderLogById(1)).thenReturn(sampleOrderLog);
 		this.mockMvc.perform(get("/orderlog/id/1"))
 //				.andDo(print())
 				.andExpect(status().isOk())

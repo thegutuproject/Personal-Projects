@@ -4,9 +4,7 @@ import com.thegutuproject.pizzashop.domain.OrderEntry;
 import com.thegutuproject.pizzashop.domain.OrderLog;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -26,13 +24,10 @@ public class OrderSorterHelperTests {
 	private OrderSorterHelper orderSorterHelper;
 
 	String original_data = new File("src/test/resources/data/original_data.txt").getAbsolutePath();
-	String unit_test_output = new File("src/main/resources/data/unit_test_output.txt").getAbsolutePath();
+	String unit_test_output = new File("src/test/resources/data/unit_test_output.txt").getAbsolutePath();
 
 	private OrderLog manualOrderLog;
-
-	@Rule
-	public ExpectedException expectedException = ExpectedException.none();
-
+	
 	@Before
 	public void setup() {
 		orderSorterHelper = new OrderSorterHelper();
@@ -62,12 +57,13 @@ public class OrderSorterHelperTests {
 		orderEntries.add(orderEntry9);
 
 		manualOrderLog.setOrderEntryList(orderEntries);
-
 	}
 
 	@Test
 	public void testLogBuildingSameFoodItems() {
-
+		
+		System.out.println("TEST RUNNING: testLogBuildingSameFoodItems");
+		
 		OrderLog automatedOrderLog = orderSorterHelper.createOrderLog(original_data);
 
 		Assert.assertEquals("Size of both arrays are equal", automatedOrderLog.getOrderEntryList().size(),manualOrderLog.getOrderEntryList().size());
@@ -86,7 +82,9 @@ public class OrderSorterHelperTests {
 
 	@Test
 	public void testLogBuildingSameOrderTime() {
-
+		
+		System.out.println("TEST RUNNING: testLogBuildingSameOrderTime");
+		
 		OrderLog automatedOrderLog = orderSorterHelper.createOrderLog(original_data);
 
 		Assert.assertEquals("Size of both arrays are equal", automatedOrderLog.getOrderEntryList().size(),manualOrderLog.getOrderEntryList().size());
@@ -105,12 +103,13 @@ public class OrderSorterHelperTests {
 
 	@Test
 	public void testWritingToAFile() {
-
+		
+		System.out.println("TEST RUNNING: testWritingToAFile");
+		
 		OrderLog originalDataOrderLog = orderSorterHelper.createOrderLog(original_data);
 		orderSorterHelper.writeOrderLogToFile(originalDataOrderLog, unit_test_output);
 
-		SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a z"); //  10/24/2016 10:24:47 AM EDT
-//		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); //  10/24/2016 10:24:47 AM EDT
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a z");
 
 		try {
 			Calendar orderDate = Calendar.getInstance();

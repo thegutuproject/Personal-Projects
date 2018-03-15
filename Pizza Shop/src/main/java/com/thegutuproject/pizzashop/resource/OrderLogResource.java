@@ -39,9 +39,11 @@ public class OrderLogResource {
 	})
 	public OrderLog getOrderLogById(
 			@PathVariable("orderLogId") @ApiParam("order log id")  final int orderLogId) {
-		// Domain object returned by backend.
-		// There is some rudimentary error checking done at the DAO level,
-		// but it needs to be expanded upon
+		/**
+		 * Domain object returned by backend.
+		 * There is some rudimentary error checking done at the DAO level,
+		 * but it needs to be expanded upon
+		 */
 		
 		OrderLog orderLog = orderLogService.getOrderLogById(orderLogId);
 		return orderLog;

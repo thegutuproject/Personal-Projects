@@ -3,7 +3,7 @@ package com.thegutuproject.pizzashop.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Model is used to send to the web interface
@@ -13,21 +13,21 @@ import java.sql.Timestamp;
 public class OrderEntryModel implements Serializable {
 	
 	private String foodItem;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
-	private Timestamp orderTime;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss", timezone="US/Eastern")
+	private Date orderTime;
 	
 	public OrderEntryModel() {
 	
 	}
 	
-	public OrderEntryModel(String foodItem, Timestamp orderTime) {
+	public OrderEntryModel(String foodItem, Date orderTime) {
 		this.foodItem = foodItem;
 		this.orderTime = orderTime;
 	}
 	
 	public OrderEntryModel(String foodItem, String orderTime) {
 		this.foodItem = foodItem;
-		this.orderTime = new Timestamp(Long.parseLong(orderTime) * 1000);
+		this.orderTime = new Date(Long.parseLong(orderTime) * 1000);
 	}
 	
 	public String getFoodItem() {
@@ -38,11 +38,11 @@ public class OrderEntryModel implements Serializable {
 		this.foodItem = foodItem;
 	}
 	
-	public Timestamp getOrderTime() {
+	public Date getOrderTime() {
 		return orderTime;
 	}
 	
-	public void setOrderTime(Timestamp orderTime) {
+	public void setOrderTime(Date orderTime) {
 		this.orderTime = orderTime;
 	}
 }

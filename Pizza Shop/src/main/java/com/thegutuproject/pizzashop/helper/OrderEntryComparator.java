@@ -13,7 +13,7 @@ public class OrderEntryComparator implements Comparator<OrderEntry> {
 	 *
 	 * @param orderEntry1
 	 * @param orderEntry2
-	 * @return
+	 * @return Integer
 	 */
 
 	public int compare(OrderEntry orderEntry1, OrderEntry orderEntry2) {
