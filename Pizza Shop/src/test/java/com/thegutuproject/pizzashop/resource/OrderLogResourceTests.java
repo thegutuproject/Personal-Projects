@@ -2,6 +2,7 @@ package com.thegutuproject.pizzashop.resource;
 
 import com.thegutuproject.pizzashop.domain.OrderEntry;
 import com.thegutuproject.pizzashop.domain.OrderLog;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -68,6 +69,14 @@ public class OrderLogResourceTests {
 		
 		sampleOrderLog.setOrderLogId(1);
 		sampleOrderLog.setOrderEntryList(sampleOrderEntryList);
+	}
+	
+	@Test
+	public void testAutowired() {
+		System.out.println("TEST RUNNING: testAutowired");
+		
+		Assert.assertNotNull(orderLogResource);
+		Assert.assertNotNull(mockMvc);
 	}
 	
 	@Test

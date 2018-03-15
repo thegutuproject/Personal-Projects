@@ -1,7 +1,7 @@
 package com.thegutuproject.pizzashop.resource;
 
 import com.thegutuproject.pizzashop.domain.OrderEntry;
-import com.thegutuproject.pizzashop.service.OrderEntryService;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +28,7 @@ public class OrderEntryResourceTests {
 	private MockMvc mockMvc;
 
 	@MockBean
-	private OrderEntryService orderEntryService;
+	private OrderEntryResource orderEntryResource;
 	
 	public SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 	public OrderEntry sampleOrderEntry;
@@ -52,11 +52,19 @@ public class OrderEntryResourceTests {
 	}
 	
 	@Test
+	public void testAutowired() {
+		System.out.println("TEST RUNNING: testAutowired");
+		
+		Assert.assertNotNull(orderEntryResource);
+		Assert.assertNotNull(mockMvc);
+	}
+	
+	@Test
 	public void testOrderEntryResourceSendsProperObject() throws Exception {
 		
 		System.out.println("TEST RUNNING: testOrderEntryResourceSendsProperObject");
 		
-		when(orderEntryService.getOrderEntryById(2)).thenReturn(sampleOrderEntry);
+		when(orderEntryResource.getOrderEntryById(2)).thenReturn(sampleOrderEntry);
 		this.mockMvc.perform(get("/orderentry/id/2"))
 //				.andDo(print())
 				.andExpect(status().isOk())
