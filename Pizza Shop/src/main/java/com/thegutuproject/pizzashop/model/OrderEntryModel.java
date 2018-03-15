@@ -13,7 +13,7 @@ import java.util.Date;
 public class OrderEntryModel implements Serializable {
 	
 	private String foodItem;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss", timezone="US/Eastern")
 	private Date orderTime;
 	
 	public OrderEntryModel() {

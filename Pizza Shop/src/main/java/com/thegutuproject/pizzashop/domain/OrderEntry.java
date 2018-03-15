@@ -9,7 +9,7 @@ public class OrderEntry implements Serializable {
 
 	private Integer orderEntryId;
 	private String foodItem;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss", timezone="US/Eastern")
 	private Date orderTime;
 	private Integer orderLogId;
 	

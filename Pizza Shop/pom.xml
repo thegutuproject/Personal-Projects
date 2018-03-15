@@ -5,7 +5,7 @@
 
     <groupId>com.thegutuproject</groupId>
     <artifactId>pizzashop</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>pizzashop</name>
@@ -26,47 +26,52 @@
 
     <dependencies>
         <!-- Spring Dependencies -->
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jersey -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jersey</artifactId>
+            <version>2.0.0.RELEASE</version>
         </dependency>
 
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.0.0.RELEASE</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>1.3.1</version>
         </dependency>
 
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <version>2.0.0.RELEASE</version>
         </dependency>
 
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.restdocs/spring-restdocs-mockmvc -->
         <dependency>
             <groupId>org.springframework.restdocs</groupId>
             <artifactId>spring-restdocs-mockmvc</artifactId>
-            <scope>test</scope>
+            <version>2.0.0.RELEASE</version>
+            <!--<scope>test</scope>-->
         </dependency>
+
 
         <!-- Mybatis -->
-        <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+        <!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-autoconfigure -->
         <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-autoconfigure</artifactId>
             <version>1.3.1</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-            <version>3.4.5</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core -->
@@ -91,53 +96,15 @@
             <type>pom</type>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-autoconfigure -->
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-autoconfigure</artifactId>
-            <version>1.3.1</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot -->
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot</artifactId>
-            <version>1.3.1</version>
-            <type>pom</type>
-        </dependency>
-
-        <!-- Unit Testing -->
-        <!-- https://mvnrepository.com/artifact/junit/junit -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-
+        <!-- Testing -->
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <version>5.0.4.RELEASE</version>
-            <scope>test</scope>
+            <!--<scope>test</scope>-->
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>2.15.0</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path-assert -->
-        <dependency>
-            <groupId>com.jayway.jsonpath</groupId>
-            <artifactId>json-path-assert</artifactId>
-            <version>2.4.0</version>
-            <scope>test</scope>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path -->
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>
@@ -159,6 +126,14 @@
             <artifactId>springfox-swagger2</artifactId>
             <version>2.8.0</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+
 
         <!-- Datasource Driver -->
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
@@ -192,18 +167,52 @@
                     <overwrite>true</overwrite>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <include>src/main/java</include>
+                                <include>src/test/java</include>
+                            </sources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>add-test-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/test/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.0.0.RELEASE</version>
+                <configuration>
+                    <mainClass>com.thegutuproject.pizzashop.PizzaShopApplication</mainClass>
+                </configuration>
+            </plugin>
+
         </plugins>
 
         <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>config/*.xml</include>
-                    <include>config/*.properties</include>
-                    <include>*.xml</include>
-                </includes>
-                <targetPath>resources</targetPath>
-            </resource>
             <resource>
                 <directory>src/main/java/com/thegutuproject/pizzashop/db/mapper</directory>
                 <includes>
@@ -211,7 +220,33 @@
                 </includes>
                 <targetPath>com/thegutuproject/pizzashop/db/mapper</targetPath>
             </resource>
+
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>*.xml</include>
+                </includes>
+                <targetPath>resources</targetPath>
+            </resource>
+
+            <resource>
+                <directory>src/main/resources/config</directory>
+                <includes>
+                    <include>*.xml</include>
+                    <include>*.properties</include>
+                </includes>
+                <targetPath>resources/config</targetPath>
+            </resource>
+
+            <resource>
+                <directory>src/main/resources/data</directory>
+                <includes>
+                    <include>*.txt</include>
+                </includes>
+                <targetPath>resources/data</targetPath>
+            </resource>
         </resources>
+
     </build>
 
 

@@ -2,65 +2,61 @@ package com.thegutuproject.pizzashop;
 
 import com.thegutuproject.pizzashop.helper.OrderEntryComparatorTests;
 import com.thegutuproject.pizzashop.helper.OrderSorterHelperTests;
+import com.thegutuproject.pizzashop.resource.OrderEntryResource;
 import com.thegutuproject.pizzashop.resource.OrderEntryResourceTests;
+import com.thegutuproject.pizzashop.resource.OrderLogResource;
 import com.thegutuproject.pizzashop.resource.OrderLogResourceTests;
+import org.junit.Assert;
+import org.junit.Test;
 import org.junit.runner.JUnitCore;
-import org.junit.runner.Result;
 import org.junit.runner.RunWith;
-import org.junit.runner.notification.Failure;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PizzaShopApplicationTests {
 	
+	@Autowired
+	OrderEntryResource orderEntryResource;
+	
+	@Autowired
+	OrderLogResource orderLogResource;
+	
 	public static void main(String[] args) {
 		
-		List<Class> classList = new ArrayList<>();
+		JUnitCore jUnitCore = new JUnitCore();
 		
-		if (null != args && args.length == 1) {
-			if (args[0].equals("simple")) {
+		if (args[0].equals("simpleTest")) {
 			
-				classList.add(OrderEntryComparatorTests.class);
-				classList.add(OrderSorterHelperTests.class);
-				
-			} else if (args[0].equals("advanced")) {
-				
-				classList.add(OrderEntryComparatorTests.class);
-				classList.add(OrderSorterHelperTests.class);
-				classList.add(OrderEntryResourceTests.class);
-				classList.add(OrderLogResourceTests.class);
-				
-			}
+			System.out.println("Simple test");
+			jUnitCore.run(PizzaShopApplicationTests.class);
+			jUnitCore.run(OrderSorterHelperTests.class);
+			jUnitCore.run(OrderEntryComparatorTests.class);
 			
-			for (Class currentClass : classList) {
-				
-				runTest(currentClass);
-				
-			}
+		} else if (args[0].equals("advancedTest")) {
+			
+			System.out.println("Advanced Test");
+			jUnitCore.run(PizzaShopApplicationTests.class);
+			jUnitCore.run(OrderSorterHelperTests.class);
+			jUnitCore.run(OrderEntryComparatorTests.class);
+			jUnitCore.run(OrderEntryResourceTests.class);
+			jUnitCore.run(OrderLogResourceTests.class);
 			
 		} else {
 			
-			PizzaShopApplication.main(args);
+			System.out.println("You haven't specified a valid test. Options: \"simpleTest\" or \"advancedTest\"");
 			
 		}
 	}
 	
-	public static void runTest(Class testClass) {
+	@Test
+	public void initializationTest() {
 		
-		JUnitCore core = new JUnitCore();
-		Result result = core.run(testClass);
+		System.out.println("TEST RUNNING: initializationTest");
 		
-		for (Failure failure : result.getFailures()) {
-			System.out.println(failure.toString());
-		}
-		
-		System.out.println(result.wasSuccessful());
-		
+		Assert.assertNotNull(orderEntryResource);
+		Assert.assertNotNull(orderLogResource);
 	}
-
 }
