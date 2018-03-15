@@ -4,7 +4,9 @@ This program will simply sort a list of pizza orders lexicographically. If two o
 
 You can run the program using the jar by running this command
 
-    java 
+    java -jar {jar.path} {input} {output}
+    
+Please note: input and output needs to be valid paths to files. 
 
 One of the assumptions made is all data provided via file input is in a specific format:
 
@@ -26,4 +28,4 @@ Swagger is implemented, and the API can be explored at http://localhost:8080/swa
 
 There are some unit tests implemented, but not a terribly large amount due to the simplicity of this application. Also note, error handling at the DAO level is very spotty at best, there are better opportunities to handle exceptions, but that would also be out of the scope of this project. 
 
-The one thing missing from this is running tests via commandline. It seems like in order to do so, you'd need to create a larger JAR file with test files loaded, and then have a condition in the main application to run the tests if a certain param is passed (?) 
+You can run tests using `mvn test` or run the jar: `java -jar {jar.path} simpleTest` or `java -jar {jar.path} advancedTest` 
